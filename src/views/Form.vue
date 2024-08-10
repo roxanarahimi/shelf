@@ -116,7 +116,7 @@
         </div>
 
         <div class="col-4 px-1">
-          <label for="face">تعداد در دیدرس (face)</label>
+          <label for="face">تعداد‌ در‌ ‌دیدرس‌face</label>
           <input type="number" class="form-control form-control-sm en" id="face">
         </div>
         <div class="col-4 px-1">
@@ -134,7 +134,7 @@
           <input type="text" class="form-control form-control-sm en" id="expire_date">
         </div>
         <div class="col-4 px-1">
-          <label for="label_price">قیمت روی بسته بندی</label>
+          <label for="label_price">قیمت بسته بندی</label>
           <input type="number" min="0"  class="form-control form-control-sm en" name="date" id="label_price">
         </div>
         <div class="col-4 px-1">
