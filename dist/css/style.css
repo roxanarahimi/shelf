@@ -1,0 +1,93 @@
+body, html {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    direction: rtl !important;
+    text-align: right ;
+    scroll-behavior: smooth;
+    background-color: whitesmoke;
+    font-size: 14px;
+}
+.max-width{
+    width: 100%;
+    max-width: 420px;
+}
+a{
+    text-decoration: none !important;
+    cursor: pointer;
+    color: inherit;
+}
+p{
+    margin-bottom: 2px !important;
+}
+label{
+    cursor:pointer;
+}
+.form-check-input{
+    margin-top: 3px !important;
+}
+* {
+    font-family: IranSans !important;
+    /*transition: all 0.2s ease !important;*/
+}
+body {
+    overflow-x: hidden;
+    margin: 0 auto;
+    height: calc(100vh - 100px) !important;
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+    cursor: pointer !important;
+    background-color: transparent !important;
+}
+
+
+/* Track */
+::-webkit-scrollbar-track {
+    /*box-shadow: inset 0 0 5px grery;*/
+    /*border-radius: 10px;*/
+    cursor: pointer !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: dimgray;
+    border-radius: 0px;
+    cursor: pointer !important;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+    cursor: pointer !important;
+
+}
+
+.error {
+    color: lightcoral;
+}
+
+.hasError {
+    border: 1.2px solid lightcoral !important;
+    box-shadow: none !important;
+}
+
+.valid {
+    border: 1.5px solid #42b983 !important;
+    box-shadow: none !important;
+}
+.en{
+    direction: ltr;
+    text-align: left;
+}
+label{
+    margin-top: 5px;
+    margin-bottom: 4px;
+}
+
+input, input:focus, select, select:focus, textarea, textarea:focus{
+    box-shadow: none !important;
+    border-color: #dee2e6 !important;
+}
