@@ -2,12 +2,12 @@
   <div class="text-start px-4">
     <b class="mb-4 text-start d-block ">فرم شلف مانیتورینگ</b>
     <div class="d-flex justify-content-end mb-3">
-        <b>تاریخ:</b>
-        <p class="d-inline-block">1403/05/10</p>
+      <b>تاریخ:</b>
+      <p class="d-inline-block">1403/05/10</p>
     </div>
     <div v-if="customer.id" class=" align-self-start text-start bg-light rounded rounded p-3">
 
-      <div  class="px-1 mb-4 text-start  ">
+      <div class="px-1 mb-4 text-start  ">
         <input type="hidden" id="customer_id" :value="customer.id">
         <p>{{ customer.name }}</p>
         <p>{{ customer.address }}</p>
@@ -35,7 +35,8 @@
         <div class="d-flex justify-content-between">
           <div>
             <b>تلفن </b>
-            <p class="d-inline-block">{{ customer.phone }} <span v-if="customer.mobile && customer.phone" >-</span>  {{ customer.mobile }}</p>
+            <p class="d-inline-block">{{ customer.phone }} <span v-if="customer.mobile && customer.phone">-</span>
+              {{ customer.mobile }}</p>
           </div>
           <div>
             <b>گرید </b>
@@ -48,20 +49,23 @@
     </div>
     <div class="mt-3 ">
       <b> برند های موجود</b>
-      <div v-for="(item,index) in brands " class="row mx-0 px-2 rounded  position-relative pb-4 my-4" style="background-color:  rgba(231,0,0,0.03)">
-        <div @click="removeBrand(index)" style="position: absolute; top:-10px; right:-20px; cursor:pointer; font-size: 18px"><i class="bi bi-x-circle-fill"></i></div>
+      <div v-for="(item,index) in brands " class="row mx-0 px-2 rounded  position-relative pb-4 my-4"
+           style="background-color:  rgba(231,0,0,0.03)">
+        <div @click="removeBrand(index)"
+             style="position: absolute; top:-10px; right:-20px; cursor:pointer; font-size: 18px"><i
+            class="bi bi-x-circle-fill"></i></div>
         <div class="col-3 px-1 ">
           <label for="sku_category_id">نوع محصول</label>
-          <select class="form-select form-select-sm" id="sku_category_id" >
+          <select @change="xx" v-model="selectedSkuCategory" class="form-select form-select-sm" id="sku_category_id">
             <option value=""></option>
-            <option v-for="item in skuCategories" :value="item.id">{{  item.title }}</option>
+            <option v-for="item in skuCategories" :value="item">{{ item.title }}</option>
           </select>
         </div>
         <div class="col-3 px-1 ">
           <label for="brand_id">برند</label>
-          <select class="form-select form-select-sm" id="brand_id" aria-label="Default select example">
+          <select @change="loadSkus" class="form-select form-select-sm" id="brand_id" aria-label="Default select example">
             <option value=""></option>
-            <option v-for="item in skuCategories.brands" :value="item.id">{{  item.title }}</option>
+            <option v-for="item in selectedSkuCategory.brands" :value="item.brand.id">{{ item.brand.title }}</option>
           </select>
         </div>
         <div class="col-4 px-1 ">
@@ -93,23 +97,11 @@
 
         <div class="col-12 px-1 ">
           <label for="">sku ها</label>
-          <div class="d-flex justify-content-between mb-2">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" :id="'sku-1-'+index">
-              <label class="form-check-label" :for="'sku-1-'+index">
-                مرغ
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" :id="'sku-2-'+index">
-              <label class="form-check-label" :for="'sku-2-'+index">
-                گوشت
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" :id="'sku-3-'+index">
-              <label class="form-check-label" :for="'sku-3-'+index">
-                سبزیجات
+          <div class="d-flex justify-content-start flex-wrap mb-2">
+            <div v-for="(item, indexSku) in skus" class="form-check me-2">
+              <input class="form-check-input" type="checkbox" value="" :id="'sku-1-'+indexSku">
+              <label class="form-check-label" :for="'sku-1-'+indexSku">
+                {{ item.title }}
               </label>
             </div>
           </div>
@@ -135,7 +127,7 @@
         </div>
         <div class="col-4 px-1">
           <label for="label_price">قیمت بسته بندی</label>
-          <input type="number" min="0"  class="form-control form-control-sm en" name="date" id="label_price">
+          <input type="number" min="0" class="form-control form-control-sm en" name="date" id="label_price">
         </div>
         <div class="col-4 px-1">
           <label for="sale_price">قیمت فروش</label>
@@ -156,7 +148,7 @@
 
       </div>
     </div>
-    <b @click="addBrand" class="cursor-pointer">افزودن <i class="bi bi-plus-circle-fill" ></i></b>
+    <b @click="addBrand" class="cursor-pointer">افزودن <i class="bi bi-plus-circle-fill"></i></b>
     <div class="px-0">
       <label for="description">توضیحات</label>
       <textarea id="description" class="form-control form-control-sm" rows="3"></textarea>
@@ -181,6 +173,8 @@ export default {
     const customer = ref({})
     const form = ref({})
     const skuCategories = ref([])
+    const selectedSkuCategory = ref({})
+    const skus = ref([])
     const loadSkuCategories = () => {
       axios.get(panelUrl + 'category/sku')
           .then((response) => {
@@ -211,16 +205,24 @@ export default {
     }
 
 
+    const loadSkus = () => {
+      axios.get(panelUrl + 'sku?sku_category_id=' + selectedSkuCategory.value.id + '&brand_id=' + document.querySelector('#brand_id').value)
+          .then((response) => {
+            skus.value = response.data;
+          }).catch((error) => {
+        console.error(error)
+      });
+    }
     return {
-      brands, addBrand, customer, findCustomer, route, form,removeBrand,
-      skuCategories,loadSkuCategories,
+      brands, addBrand, customer, findCustomer, route, form, removeBrand,
+      skuCategories, loadSkuCategories, selectedSkuCategory, skus, loadSkus
     }
   }
 }
 </script>
 
 <style scoped>
-label{
+label {
   font-size: 12px;
 }
 </style>
