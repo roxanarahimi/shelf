@@ -1,40 +1,7 @@
 <template>
   <div class="d-grid text-start h-100 px-4">
     <b class="mb-4 text-start d-block  ">گرید بندی فروشگاه</b>
-    <div  v-if="customer.id" class="bg-light rounded p-3 mb-4 ">
-      <div class="px-1 text-start">
-        <input type="hidden" id="customer_id" :value="customer.id">
-        <p>{{ customer.name }}</p>
-        <p>{{ customer.address }}</p>
-        <b>استان </b>
-        <p class="d-inline-block">{{ customer.province.title }}</p>
-        <b> شهر </b>
-        <p class="d-inline-block">{{ customer.city.title }}</p>
-
-        <br>
-
-
-
-        <div class="d-flex justify-content-between">
-          <div>
-            <b> منطقه </b>
-            <p class="d-inline-block">{{ customer.region.title }}</p>
-            <b> مسیر </b>
-            <p class="d-inline-block">{{ customer.path }}</p>
-            <b> کد مسیر </b>
-            <p class="d-inline-block">{{ customer.path_code }}</p>
-          </div>
-          <div>
-            <p>{{ customer.path_description }}</p>
-          </div>
-        </div>
-        <div class="d-flex justify-content-between">
-         <div><b>تلفن </b><p class="d-inline-block">{{ customer.phone }} <span v-if="customer.mobile && customer.phone" >-</span>  {{ customer.mobile }}</p></div>
-          <div> <b>گرید </b><p class="d-inline-block">{{ customer.scores?.grade }}</p></div>
-        </div>
-
-      </div>
-    </div>
+    <customer-info v-if="customer.id" :customer="customer" />
 
     <div class="row p-0 m-0">
       <div class="col-6 px-1 ">
@@ -111,12 +78,13 @@
 <script>
 import {onBeforeMount, ref} from "vue";
 import App from "@/App";
-import customer from "@/views/Customer";
 import {useRoute} from "vue-router";
 import router from "@/router";
+import CustomerInfo from "@/components/CustomerInfo";
 
 export default {
   name: "Grade",
+  components: {CustomerInfo},
   setup() {
     const route = useRoute();
     const panelUrl = App.setup().panelUrl;
