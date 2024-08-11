@@ -1,7 +1,7 @@
 <template>
   <div class="d-grid h-100 px-4 w-100">
     <div class="row text-start px-2 align-self-start">
-      <b class="mb-4 text-start d-block  ">جستجوی مشتری</b>
+      <b class="mb-5 text-start d-block  ">جستجوی مشتری</b>
       <div class="col-12 px-1 ">
 
         <label for="code">کد مشتری</label>
