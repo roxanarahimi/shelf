@@ -1,6 +1,5 @@
 <template>
-  <div  class="row mx-0 px-2 rounded  position-relative pb-4 my-4"
-       style="background-color:  rgba(231,0,0,0.03)">
+  <div  class="row mx-0 px-2 rounded  position-relative pb-4 my-4" style="background-color:  rgba(231,0,0,0.05)">
     <div @click="removeBrand(index)"
          style="position: absolute; top:-10px; right:-20px; cursor:pointer; font-size: 18px"><i
         class="bi bi-x-circle-fill"></i></div>
