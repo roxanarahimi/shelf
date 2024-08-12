@@ -6,7 +6,7 @@
           <div style="cursor: pointer" @click="$router.go(-1)"><i class="bi bi-caret-left-fill"></i></div>
           <b id="visitor-name" style="z-index: 1000"></b>
         </nav>
-        <div class="header-styler"></div>
+<!--        <div class="header-styler"></div>-->
       </div>
     </div>
     <div class="container-fluid p-0 m-0 pb-3 align-self-center w-100 mx-auto router-view-wrapper">
@@ -133,12 +133,14 @@ export default {
   line-height: 160px;
 }
 .router-view-wrapper {
-  height: calc(100vh - 265px);
+  height: calc(100vh - 220px);
   overflow-y: scroll;
   overflow-x: hidden !important;
-  margin-top: 50px;
+  margin-top: -30px !important;
+  padding-top: 30px !important;
+  padding-bottom: 5px !important;
   background-color: white;
-
+  border-radius: 20px 20px 0 0;
   align-self: center;
 
 }
