@@ -2,7 +2,7 @@
   <div class=" d-grid m-0 p-0 container-fluid main-wrapper max-width h-100">
     <div class="text-light mx-auto max-width m-0 p-0 top-nav-wrapper">
       <div class=" top-nav-wrapper-inner max-width">
-        <nav dir="ltr" class="d-flex justify-content-between py-5  w-100 m-0 top-nav max-width">
+        <nav dir="ltr" class="d-flex justify-content-between py-5 w-100 m-0 top-nav max-width">
           <div style="cursor: pointer" @click="$router.go(-1)"><i class="bi bi-caret-left-fill"></i></div>
           <b id="visitor-name" style="z-index: 1000"></b>
         </nav>
@@ -117,16 +117,7 @@ export default {
 
 }
 
-.router-view-wrapper {
-  height: calc(100vh - 270px);
-  overflow-y: scroll;
-  overflow-x: hidden !important;
-  margin-top: 50px;
-  background-color: white;
 
-  align-self: center;
-
-}
 
 .top-nav-wrapper {
   top: 0;
@@ -136,8 +127,24 @@ export default {
 
 }
 
+
+.top-nav {
+  height: 180px;
+  line-height: 160px;
+}
+.router-view-wrapper {
+  height: calc(100vh - 295px);
+  overflow-y: scroll;
+  overflow-x: hidden !important;
+  margin-top: 50px;
+  background-color: white;
+
+  align-self: center;
+
+}
 .top-nav-wrapper-inner {
-  background: transparent url('assets/logo.png') center center !important;
+  background: transparent url('assets/logo.png') center center no-repeat !important;
+  background-size: cover;
 }
 
 .main-wrapper {
@@ -155,11 +162,6 @@ export default {
   background-color: white;
 }
 
-
-.top-nav {
-  height: 205px;
-  line-height: 200px;
-}
 
 
 nav {
