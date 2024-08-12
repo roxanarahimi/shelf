@@ -53,10 +53,11 @@
 
 
       <div class="px-1">
-        <label for="image">تصویر سردر سوپر مارکت</label>
-        <div class="rounded" id="image" style="border: dashed #c9c9c9 1px; height: 100px; ">
+        <label>تصویر سردر سوپر مارکت</label>
+<!--        <div class="rounded" id="image" style="border: dashed #c9c9c9 1px; height: 100px; "></div>-->
+        <image-cropper name="" caption="" :hasCaption="hasCaption"
+                       :isPng="isPng"    :isRequired="imgRequired" :aspect="aspect" /><!-- :src="data.image" -->
 
-        </div>
       </div>
     </div>
 
@@ -81,11 +82,22 @@ import App from "@/App";
 import {useRoute} from "vue-router";
 import router from "@/router";
 import CustomerInfo from "@/components/CustomerInfo";
+import ImageCropper from "@/components/ImageCropper";
 
 export default {
   name: "Grade",
-  components: {CustomerInfo},
+  components: {CustomerInfo, ImageCropper},
   setup() {
+    const image_codes= ref([])
+    const image_names= ref([])
+    const imgRequired= ref(false)
+    const hasCaption= ref(false)
+    const aspect= ref(false)
+    const isPng= ref(true)
+    const image= ref({})
+    const images= ref([])
+
+
     const route = useRoute();
     const panelUrl = App.setup().panelUrl;
     const customer = ref({});
@@ -132,7 +144,8 @@ export default {
     })
 
     return {
-      panelUrl, loadSectors, sectors, customer, route, findCustomer,saveScores
+      panelUrl, loadSectors, sectors, customer, route, findCustomer,saveScores,
+      image_codes, image_names,imgRequired,hasCaption,aspect,isPng, image,images
     }
   },
 }

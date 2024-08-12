@@ -13,15 +13,23 @@
       <input v-if="visitor" type="hidden" id="visitor_id" :value="visitor.id">
       <router-view/>
     </div>
-    <nav class="d-flex justify-content-between p-0 m-0 w-100 mx-auto bottom-nav">
-      <router-link to="/" class="bottom-nav-link py-2"><i class="bi bi-house-fill d-block"></i><small>خانه</small>
+    <nav class="d-flex justify-content-between p-0 m-0 w-100 mx-auto bottom-nav align-self-end">
+      <router-link to="/" class="bottom-nav-link py-2">
+        <i class="bi bi-house-fill d-block"></i>
+        <small>خانه</small>
       </router-link>
-      <router-link to="/customer" class="bottom-nav-link py-2 "><i class="bi bi-info-square-fill d-block"></i><small>مشتری</small>
+      <router-link to="/customer" class="bottom-nav-link py-2 ">
+        <i class="bi bi-info-square-fill d-block"></i>
+        <small>مشتری</small>
       </router-link>
-      <router-link to="/forms" class="bottom-nav-link py-2 "><i class="bi bi-file-text-fill d-block"></i><small>فرم
-        ها</small></router-link>
-      <router-link to="/profile" class="bottom-nav-link py-2 "><i
-          class="bi bi-person-fill d-block"></i><small>پروفایل</small></router-link>
+      <router-link to="/forms" class="bottom-nav-link py-2 ">
+        <i class="bi bi-file-text-fill d-block"></i>
+        <small>فرم ها</small>
+      </router-link>
+      <router-link to="/profile" class="bottom-nav-link py-2 ">
+        <i class="bi bi-person-fill d-block"></i>
+        <small>پروفایل</small>
+      </router-link>
     </nav>
   </div>
 </template>
@@ -108,13 +116,9 @@ export default {
 
 .bottom-nav {
   font-size: 20px;
-  /*position: absolute;*/
-  /*bottom: 0;*/
   border-radius: 20px 20px 0 0 !important;
   overflow: hidden;
   background-color: white;
-  align-self: end;
-
 }
 
 
