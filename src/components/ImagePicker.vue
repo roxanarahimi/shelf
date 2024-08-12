@@ -11,9 +11,9 @@
   </div>
 <!--  <input type="file" id="image" @change="fileChanged" accept=".jpg, .png" >-->
 <!--  <input type="file" id="image0" @change="fileChanged" accept=".jpg,.png;capture=camera" >-->
-  <input type="file" id="image0" @change="fileChanged" accept=".jpg,.png" capture="environment">
-  <input type="file" id="image1" @change="fileChanged" accept=".jpg,.png" capture="user">
-  <input type="file" id="image2" @change="fileChanged" accept=".jpg,.png" capture="camera">
+  <input type="file" id="image0" @change="fileChanged" accept="image/*" capture="environment">
+  <input type="file" id="image1" @change="fileChanged" accept="image/*" capture="user">
+  <input type="file" id="image2" @change="fileChanged" accept="image/*" capture="camera">
   <input type="file" id="image3" @change="fileChanged" accept="image/*;capture=camera" >
 </template>
 
