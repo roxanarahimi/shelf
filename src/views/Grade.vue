@@ -1,7 +1,7 @@
 <template>
   <div class="d-grid text-start h-100 px-4">
     <b class="mb-4 text-start d-block  ">گرید بندی فروشگاه</b>
-    <customer-info v-if="customer.id" :customer="customer" />
+    <customer-info v-if="customer.id" :customer="customer"/>
 
     <div class="row p-0 m-0">
       <div class="col-6 px-1 ">
@@ -46,18 +46,17 @@
       </div>
       <div class="col-12 px-1 ">
         <label for="sector_id">محله</label>
-        <select  class="form-select form-select-sm" id="sector_id">
-          <option :selected="customer.scores && customer.scores.sector.id == item.id" v-for="item in sectors" :key="item.id" :value="item.id">{{ item.title }}</option>
+        <select class="form-select form-select-sm" id="sector_id">
+          <option :selected="customer.scores && customer.scores.sector.id == item.id" v-for="item in sectors"
+                  :key="item.id" :value="item.id">{{ item.title }}
+          </option>
         </select>
       </div>
 
 
       <div class="px-1">
         <label>تصویر سردر سوپر مارکت</label>
-<!--        <div class="rounded" id="image" style="border: dashed #c9c9c9 1px; height: 100px; "></div>-->
-        <image-cropper name="" caption="" :hasCaption="hasCaption"
-                       :isPng="isPng"    :isRequired="imgRequired" :aspect="aspect" /><!-- :src="data.image" -->
-
+        <image-picker/>
       </div>
     </div>
 
@@ -82,22 +81,12 @@ import App from "@/App";
 import {useRoute} from "vue-router";
 import router from "@/router";
 import CustomerInfo from "@/components/CustomerInfo";
-import ImageCropper from "@/components/ImageCropper";
+import ImagePicker from "@/components/ImagePicker";
 
 export default {
   name: "Grade",
-  components: {CustomerInfo, ImageCropper},
+  components: {ImagePicker, CustomerInfo},
   setup() {
-    const image_codes= ref([])
-    const image_names= ref([])
-    const imgRequired= ref(false)
-    const hasCaption= ref(false)
-    const aspect= ref(false)
-    const isPng= ref(true)
-    const image= ref({})
-    const images= ref([])
-
-
     const route = useRoute();
     const panelUrl = App.setup().panelUrl;
     const customer = ref({});
@@ -133,7 +122,7 @@ export default {
         equipment: document.querySelector('#equipment').value,
       })
           .then((response) => {
-            router.push({path:'/customer',query:{code: customer.value.code}})
+            router.push({path: '/customer', query: {code: customer.value.code}})
           }).catch((error) => {
         console.error(error)
       });
@@ -144,8 +133,7 @@ export default {
     })
 
     return {
-      panelUrl, loadSectors, sectors, customer, route, findCustomer,saveScores,
-      image_codes, image_names,imgRequired,hasCaption,aspect,isPng, image,images
+      panelUrl, loadSectors, sectors, customer, route, findCustomer, saveScores
     }
   },
 }
