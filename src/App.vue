@@ -133,7 +133,7 @@ export default {
   line-height: 160px;
 }
 .router-view-wrapper {
-  height: calc(100vh - 270px);/*65*/
+  height: calc(100vh - 265px);
   overflow-y: scroll;
   overflow-x: hidden !important;
   margin-top: 50px;
