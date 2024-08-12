@@ -56,7 +56,7 @@
 
       <div class="px-1">
         <label>تصویر سردر سوپر مارکت</label>
-        <image-picker/>
+        <image-picker index="1" />
       </div>
     </div>
 
@@ -67,7 +67,7 @@
 
 
     <div class="align-self-end my-2 ">
-      <button @click="saveScores" class="btn bg">ذخیره</button>
+      <button @click="saveScores"  class="btn bg">ذخیره</button>
     </div>
 
 

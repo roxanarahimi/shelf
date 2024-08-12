@@ -88,10 +88,8 @@
     </div>
 
     <div class="col-12 px-1 mt-2">
-      <label for="image">تصویر چیدمان</label>
-      <div class="rounded bg-white" id="image" style="border: dashed #c9c9c9 1px; height: 100px; ">
-
-      </div>
+      <label>تصویر چیدمان</label>
+      <image-picker :index="index" />
     </div>
     <!--        <hr class="my-4 " style="border:  dashed #e70000 1px;opacity: 0.8; ">-->
 
@@ -102,9 +100,11 @@
 import {onBeforeMount, ref} from "vue";
 import App from "@/App";
 import {useRoute} from "vue-router";
-
+import ImagePicker from "@/components/ImagePicker";
 export default {
   name: "FormSection",
+  components:{ImagePicker},
+  props:['index'],
   setup(){
     const route = useRoute();
     const panelUrl = App.setup().panelUrl;
