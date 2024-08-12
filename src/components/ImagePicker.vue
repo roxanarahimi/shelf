@@ -8,8 +8,8 @@
       <i style="font-size: 35px" class="bi bi-image"></i>
       <p style="font-size: 15px">بارگذاری تصویر</p>
     </div>
-    <div v-if="selectedFile" class="image-container">
-      <img v-if="imageSrc" class="img-fluid" style="width: 360px !important; height: auto !important" :src="imageSrc">
+    <div v-if="selectedFile" class="image-container p-1">
+      <img v-if="imageSrc" class="img-fluid" style="width: 360px !important; border-radius: 5px; height: auto !important" :src="imageSrc">
     </div>
   </div>
 <!--  <input type="file" id="image0" @change="fileChanged" accept=".jpg, .png" >-->
