@@ -1,16 +1,16 @@
 <template>
-  <div  class="row mx-0 px-2 rounded  position-relative pt-2 pb-3 my-4" style="border: solid  rgba(231,0,0,0.1) 1px;background-color:  rgba(231,0,0,0.05)">
-    <div @click="removeBrand(index)" style="position: absolute; top:-10px; right:-20px; cursor:pointer; font-size: 18px"><i class="bi bi-x-circle-fill"></i></div>
+  <div :id="'form-section-'+index" class="row mx-0 px-2 rounded  position-relative pt-2 pb-3 my-4" style="border: solid  rgba(231,0,0,0.1) 1px;background-color:  rgba(231,0,0,0.05)">
+    <div @click="$parent.removeBrand(index)" style="position: absolute; top:-10px; right:-20px; cursor:pointer; font-size: 18px"><i class="bi bi-x-circle-fill"></i></div>
     <div class="col-3 px-1 ">
       <label for="sku_category_id">نوع محصول</label>
-      <select  v-model="selectedSkuCategory" name="sku_category" class="form-select form-select-sm" id="sku_category_id">
+      <select  v-model="selectedSkuCategory" :data-value-id="selectedSkuCategory.id" name="sku_category" class="form-select form-select-sm" id="sku_category_id" required>
         <option value=""></option>
         <option v-for="item in skuCategories" :value="item">{{ item.title }}</option>
       </select>
     </div>
     <div class="col-3 ps-0 pe-1 ">
       <label for="brand">برند</label>
-      <select v-model="selectedBrand" @change="loadSkus" name="brand" class="form-select form-select-sm" id="brand" >
+      <select v-model="selectedBrand"  :data-value-id="selectedBrand.id" @change="loadSkus" name="brand" class="form-select form-select-sm" id="brand" required>
         <option value=""></option>
         <option v-for="item in selectedSkuCategory.brands" :value="item.brand">{{ item.brand.title }}</option>
       </select>
@@ -45,9 +45,9 @@
     <div class="col-12 px-1 ">
       <label>sku ها</label>
       <div class="d-flex justify-content-start flex-wrap mb-2">
-        <div v-for="(item, indexSku) in skus" class="form-check me-2">
-          <input class="form-check-input" type="checkbox" value="" :id="'sku-'+indexSku">
-          <label class="form-check-label" :for="'sku-'+indexSku">
+        <div v-for="item in skus" class="form-check me-2">
+          <input class="form-check-input" type="checkbox" :value="item.id" :name="'skus_of_cat__'+selectedSkuCategory.id" :id="'sku_'+item.id">
+          <label class="form-check-label" :for="'sku_'+item.id">
             {{ item.title }}
           </label>
         </div>
@@ -70,7 +70,7 @@
     </div>
     <div class="col-2 ps-0 pe-1">
       <label class="">تاریخ انقضا</label>
-      <select class="form-select form-select-sm" name="presence" >
+      <select class="form-select form-select-sm" name="expire_day" >
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -106,7 +106,7 @@
     </div>
     <div class="col-2 ps-0 pe-1">
       <label>&nbsp</label>
-       <select class="form-select form-select-sm" name="presence" >
+       <select class="form-select form-select-sm" name="expire_month" >
          <option value="1">1</option>
          <option value="2">2</option>
          <option value="3">3</option>
@@ -123,7 +123,7 @@
      </div>
     <div class="col-2 ps-0 pe-1">
       <label>&nbsp</label>
-       <input type="number" class="form-control form-control-sm en" value="1403" name="face">
+       <input type="number" class="form-control form-control-sm en" value="1403" name="expire_year">
      </div>
 
     <div class="col-4 px-1">

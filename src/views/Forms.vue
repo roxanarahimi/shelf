@@ -18,16 +18,30 @@
 <script>
 import {onBeforeMount, ref} from "vue";
 import App from "@/App";
+import {useRoute} from "vue-router";
 
 export default {
   name: "Forms",
   setup(){
-    const visitor = JSON.parse(localStorage.getItem('user'));
+    const route = useRoute();
+    const panelUrl = App.setup().panelUrl;
+    const visitor = ref({});//JSON.parse(localStorage.getItem('user'))
+    const reloadVisitor = () => {
+      axios.get(panelUrl + 'visitor/' + JSON.parse(localStorage.getItem('user')).id)
+          .then((response) => {
+            visitor.value = response.data;
+            localStorage.setItem('user',JSON.stringify(response.data));
+          }).catch((error) => {
+        console.error(error)
+      });
+    }
+
     onBeforeMount(()=>{
       App.setup().checkUser();
+      reloadVisitor();
     });
     return{
-      visitor,
+      visitor,route, panelUrl, reloadVisitor
     }
   },
 }

@@ -49,7 +49,7 @@ export default {
       if (JSON.parse(localStorage.getItem('user'))?.id) {
         user.value = JSON.parse(localStorage.getItem('user'));
         visitor.value = JSON.parse(localStorage.getItem('user'));
-        document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
+        document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value?.name;
 
       } else {
         document.querySelector('#visitor-name').innerHTML = '';

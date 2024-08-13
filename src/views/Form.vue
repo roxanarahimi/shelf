@@ -5,10 +5,10 @@
       <b>تاریخ:</b>
       <p class="d-inline-block">1403/05/10</p>
     </div>
-    <customer-info v-if="customer.id" :customer="customer" />
+    <customer-info v-if="customer.id" :customer="customer"/>
     <div class="mt-3 ">
       <b> برند های موجود</b>
-      <form-section v-for="(item,index) in brands " :info="item" :index="index" />
+      <form-section v-for="(item,index) in brands " :info="item" :index="index"/>
     </div>
     <b @click="addBrand" class="cursor-pointer">افزودن <i class="bi bi-plus-circle-fill"></i></b>
     <div class="px-0">
@@ -16,7 +16,8 @@
       <textarea id="description" class="form-control form-control-sm" rows="3"></textarea>
     </div>
     <div class="px-0 my-4">
-      <button class="btn" style="background-color: #e70000; color: white">ذخیره</button>
+      <p v-if="emptyFieldsCount" class="error">لطفا همه فیلدها را پر کنید</p>
+      <button class="btn" style="background-color: #e70000; color: white" @click="saveForm">ذخیره</button>
     </div>
 
   </div>
@@ -36,7 +37,9 @@ export default {
     const route = useRoute();
     const panelUrl = App.setup().panelUrl;
     const customer = ref({})
+    const visitor = JSON.parse(localStorage.getItem('user'));
     const form = ref({})
+    const emptyFieldsCount = ref(0);
     const findCustomer = () => {
       axios.get(panelUrl + 'customer/' + route.params.id)
           .then((response) => {
@@ -50,18 +53,66 @@ export default {
       App.setup().checkUser();
       findCustomer();
     });
-    const brands = ref(1);
+    const brands = ref([]);
     const addBrand = () => {
-      brands.value += 1;
+      let obj = {
+        'sku_category_id': '',
+        'brand_id': '',
+        'space': '',
+        'layout': '',
+        'sku_ids': '',
+        'face': '',
+        'presence': '',
+        'expire_day': '',
+        'expire_month': '',
+        'expire_year': '',
+        'label_price': '',
+        'sale_price': '',
+        'distribute_price': ''
+      };
+      brands.value.push(obj);
     }
     const removeBrand = (index) => {
-      // brands.value += 1;
+      brands.value.splice(index, 1);
     }
 
-
+    const saveForm = () => {
+      emptyFieldsCount.value = App.setup().EmptyFieldsCount();
+      let info = [];
+      if (emptyFieldsCount.value === 0) {
+        for (let i = 0; i < document.getElementsByName('sku_category').length; i++) {
+          let cat_id = document.getElementsByName('sku_category')[i].getAttribute('data-value-id');
+          let sku_ids = [];
+          document.querySelectorAll("[name='skus_of_cat__" + cat_id + "']:checked").forEach((element) => {
+            sku_ids.push(parseInt(element.value));
+          });
+          info.push({
+            sku_category_id: parseInt(cat_id),
+            brand_id: document.getElementsByName('brand')[i].getAttribute('data-value-id'),
+            sku_ids: sku_ids,
+            face: document.getElementsByName('face')[i].value,
+            presence: document.getElementsByName('presence')[i].value,
+            space: document.getElementsByName('space')[i].value,
+            layout: document.getElementsByName('layout')[i].value,
+            expire_date: document.getElementsByName('expire_year')[i].value + '-' + document.getElementsByName('expire_month')[i].value + '-' + document.getElementsByName('expire_day')[i].value,
+            label_price: document.getElementsByName('label_price')[i].value,
+            sale_price: document.getElementsByName('sale_price')[i].value,
+            distribute_price: document.getElementsByName('distribute_price')[i].value
+          });
+        }
+        axios.post(panelUrl+'form', {
+          visitor_id: visitor.id,
+          customer_id: route.params.id,
+          form: info,
+        })
+        .then((response)=>{
+          route.push({name: 'forms'});
+        }).catch((error)=>{ console.error(error)});
+      }
+      // console.log('info', info);
+    }
     return {
-      brands, addBrand, customer, findCustomer, route, form, removeBrand,
-
+      brands, addBrand, customer,visitor, findCustomer, route, form, removeBrand, saveForm, emptyFieldsCount
     }
   }
 }
