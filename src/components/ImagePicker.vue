@@ -2,11 +2,10 @@
 
 <!--  style="color: #e70000; height: 200px; background-color: rgba(231,0,0,0.05)">-->
 
-  <div class="rounded d-grid text-center cursor-pointer" @click="selectFile"
-       style="border: dashed #e70000 1px; min-height: 200px; color: #e70000">
-    <div v-if="!selectedFile" class="align-self-center mx-auto" style="color: rgba(231,0,0,0.69);">
-      <i style="font-size: 35px" class="bi bi-image"></i>
-      <p style="font-size: 15px">بارگذاری تصویر</p>
+  <div class="rounded d-grid text-center cursor-pointer" @click="selectFile" style="border: dashed #c5c8cb 1px; min-height: 200px;">
+    <div v-if="!selectedFile" class="align-self-center mx-auto" style="color: #696969;">
+      <i style="font-size: 35px" class="bi bi-camera-fill"></i>
+      <p style="font-size: 15px">ثبت تصویر</p>
     </div>
     <div v-if="selectedFile" class="image-container p-1">
       <img v-if="imageSrc" class="img-fluid" style="width: 360px !important; border-radius: 5px; height: auto !important" :src="imageSrc">

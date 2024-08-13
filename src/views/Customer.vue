@@ -13,7 +13,7 @@
       </div>
 
     </div>
-    <div v-if="customer.id" class="text-start bg-light rounded p-3 align-self-center">
+    <div v-if="customer.id" class="text-start bg-light rounded p-3 align-self-center" style="border: solid rgb(236,236,236) 1px;">
       <input type="hidden" id="customer_id" :value="customer.id">
       <b class="d-block  mb-3">اطلاعات مشتری:</b>
       <p>{{ customer.name }}</p>

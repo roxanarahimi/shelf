@@ -1,5 +1,5 @@
 <template>
-  <div class="align-self-start text-start bg-light rounded rounded p-3">
+  <div class="align-self-start text-start bg-light rounded rounded p-3" style="border: solid rgb(236,236,236) 1px;">
     <div class="px-1 mb-4 text-start  ">
       <input type="hidden" id="customer_id" :value="customer.id">
       <p>{{ customer.name }}</p>
