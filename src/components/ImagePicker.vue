@@ -4,8 +4,8 @@
 
   <div class="rounded d-grid text-center cursor-pointer" @click="selectFile" style="border: dashed #c5c8cb 1px; min-height: 200px;">
     <div v-if="!selectedFile" class="align-self-center mx-auto" style="color: #696969;">
-      <i style="font-size: 35px" class="bi bi-camera-fill"></i>
-      <p style="font-size: 15px">ثبت تصویر</p>
+      <i style="font-size: 55px" class="bi bi-camera-fill"></i>
+      <p style="font-size: 15px; margin-top: -20px" >ثبت تصویر</p>
     </div>
     <div v-if="selectedFile" class="image-container p-1">
       <img v-if="imageSrc" class="img-fluid" style="width: 360px !important; border-radius: 5px; height: auto !important" :src="imageSrc">

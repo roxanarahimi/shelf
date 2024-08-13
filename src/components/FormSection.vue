@@ -1,8 +1,6 @@
 <template>
   <div  class="row mx-0 px-2 rounded  position-relative pt-2 pb-3 my-4" style="border: solid  rgba(231,0,0,0.1) 1px;background-color:  rgba(231,0,0,0.05)">
-    <div @click="removeBrand(index)"
-         style="position: absolute; top:-10px; right:-20px; cursor:pointer; font-size: 18px"><i
-        class="bi bi-x-circle-fill"></i></div>
+    <div @click="removeBrand(index)" style="position: absolute; top:-10px; right:-20px; cursor:pointer; font-size: 18px"><i class="bi bi-x-circle-fill"></i></div>
     <div class="col-3 px-1 ">
       <label for="sku_category_id">نوع محصول</label>
       <select  v-model="selectedSkuCategory" name="sku_category" class="form-select form-select-sm" id="sku_category_id">
@@ -10,14 +8,14 @@
         <option v-for="item in skuCategories" :value="item">{{ item.title }}</option>
       </select>
     </div>
-    <div class="col-3 px-1 ">
+    <div class="col-3 ps-0 pe-1 ">
       <label for="brand">برند</label>
       <select v-model="selectedBrand" @change="loadSkus" name="brand" class="form-select form-select-sm" id="brand" >
         <option value=""></option>
         <option v-for="item in selectedSkuCategory.brands" :value="item.brand">{{ item.brand.title }}</option>
       </select>
     </div>
-    <div class="col-4 px-1 ">
+    <div class="col-4 ps-0 pe-1 ">
       <label>فضای تبلیغاتی</label>
       <select class="form-select form-select-sm" name="space" >
         <option value="استیکر">استیکر</option>
@@ -33,7 +31,7 @@
         <option value="پلی شلف">پلی شلف</option>
       </select>
     </div>
-    <div class="col-2 px-1 ">
+    <div class="col-2 ps-0 pe-1 ">
       <label>چیدمان</label>
       <select class="form-select form-select-sm" name="layout" >
         <option value="1">1</option>
@@ -56,11 +54,11 @@
       </div>
     </div>
 
-    <div class="col-4 px-1">
-      <label>تعداد‌ در‌ ‌دیدرس‌face</label>
+    <div class="col-3 px-1">
+      <label>تعداد‌ در‌ ‌دیدرس</label>
       <input type="number" class="form-control form-control-sm en" name="face">
     </div>
-    <div class="col-4 px-1">
+    <div class="col-3 ps-0 pe-1">
       <label>شدت حضور</label>
       <select class="form-select form-select-sm" name="presence" >
         <option value="1">1</option>
@@ -70,19 +68,73 @@
         <option value="5">5</option>
       </select>
     </div>
-    <div class="col-4 px-1">
-      <label>تاریخ انقضا</label>
-      <input type="text" class="form-control form-control-sm en" name="expire_date">
+    <div class="col-2 ps-0 pe-1">
+      <label class="">تاریخ انقضا</label>
+      <select class="form-select form-select-sm" name="presence" >
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+      </select>
     </div>
+    <div class="col-2 ps-0 pe-1">
+      <label>&nbsp</label>
+       <select class="form-select form-select-sm" name="presence" >
+         <option value="1">1</option>
+         <option value="2">2</option>
+         <option value="3">3</option>
+         <option value="4">4</option>
+         <option value="5">5</option>
+         <option value="6">6</option>
+         <option value="7">7</option>
+         <option value="8">8</option>
+         <option value="9">9</option>
+         <option value="10">10</option>
+         <option value="11">11</option>
+         <option value="12">12</option>
+       </select>
+     </div>
+    <div class="col-2 ps-0 pe-1">
+      <label>&nbsp</label>
+       <input type="number" class="form-control form-control-sm en" value="1403" name="face">
+     </div>
+
     <div class="col-4 px-1">
       <label>قیمت بسته بندی</label>
       <input type="number" min="0" class="form-control form-control-sm en" name="label_price">
     </div>
-    <div class="col-4 px-1">
+    <div class="col-4 ps-0 pe-1">
       <label>قیمت فروش</label>
       <input type="number" min="0" class="form-control form-control-sm en" name="sale_price">
     </div>
-    <div class="col-4 px-1">
+    <div class="col-4 ps-0 pe-1">
       <label>قیمت پخش</label>
       <input type="number" min="0" class="form-control form-control-sm en"  name="distribute_price">
     </div>
@@ -145,6 +197,6 @@ export default {
 
 <style scoped>
 label {
-  font-size: 12px;
+  font-size: 11px;
 }
 </style>
