@@ -41,8 +41,8 @@ import {useRouter} from "vue-router";
 export default {
   setup() {
     const router = useRouter()
-    // const panelUrl = 'https://panel.shelf.webagent.ir/api/';
-    const panelUrl = 'http://localhost:8000/api/';
+    const panelUrl = 'https://panel.shelf.webagent.ir/api/';
+    // const panelUrl = 'http://localhost:8000/api/';
     const visitor = ref({});
     const user = ref({});
     const checkUser = () => {
