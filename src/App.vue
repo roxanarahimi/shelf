@@ -41,15 +41,15 @@ import {useRouter} from "vue-router";
 export default {
   setup() {
     const router = useRouter()
-    // const panelUrl = 'https://panel.shelf.webagent.ir/api/';
-    const panelUrl = 'http://localhost:8000/api/';
+    const panelUrl = 'https://panel.shelf.webagent.ir/api/';
+    // const panelUrl = 'http://localhost:8000/api/';
     const visitor = ref({});
     const user = ref({});
     const checkUser = () => {
       if (JSON.parse(localStorage.getItem('user'))?.id) {
         user.value = JSON.parse(localStorage.getItem('user'));
         visitor.value = JSON.parse(localStorage.getItem('user'));
-        document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value?.name;
+        document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
 
       } else {
         document.querySelector('#visitor-name').innerHTML = '';
