@@ -46,7 +46,7 @@
       <label>sku ها</label>
       <div class="d-flex justify-content-start flex-wrap mb-2">
         <div v-for="item in skus" class="form-check me-2">
-          <input class="form-check-input" type="checkbox" :value="item.id" :name="'skus_of_cat__'+selectedSkuCategory.id" :id="'sku_'+item.id">
+          <input class="form-check-input" type="checkbox" :value="item.id" :name="'skus_of_cat__'+selectedSkuCategory.id+'__brand'+selectedBrand.id" :id="'sku_'+item.id">
           <label class="form-check-label" :for="'sku_'+item.id">
             {{ item.title }}
           </label>

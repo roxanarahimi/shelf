@@ -1,14 +1,14 @@
 <template>
   <div class="text-start px-4">
     <b class="mb-4 text-start d-block ">فرم شلف مانیتورینگ</b>
-    <div class="d-flex justify-content-end mb-3">
-      <b>تاریخ:</b>
-      <p class="d-inline-block">1403/05/10</p>
-    </div>
+<!--    <div class="d-flex justify-content-end mb-3">-->
+<!--      <b>تاریخ:</b>-->
+<!--      <p class="d-inline-block">1403/05/10</p>-->
+<!--    </div>-->
     <customer-info v-if="customer.id" :customer="customer"/>
     <div class="mt-3 ">
       <b> برند های موجود</b>
-      <form-section-form v-for="(item,index) in brands " :info="item" :index="index"/>
+      <form-section-form v-for="(item,index) in formSections " :info="item" :index="index"/>
     </div>
     <b @click="addBrand" class="cursor-pointer">افزودن <i class="bi bi-plus-circle-fill"></i></b>
     <div class="px-0">
@@ -54,7 +54,7 @@ export default {
       App.setup().checkUser();
       findCustomer();
     });
-    const brands = ref([]);
+    const formSections = ref([]);
     const addBrand = () => {
       let obj = {
         'sku_category_id': '',
@@ -71,10 +71,10 @@ export default {
         'sale_price': '',
         'distribute_price': ''
       };
-      brands.value.push(obj);
+      formSections.value.push(obj);
     }
     const removeBrand = (index) => {
-      brands.value.splice(index, 1);
+      formSections.value.splice(index, 1);
     }
 
     const saveForm = () => {
@@ -83,13 +83,14 @@ export default {
       if (emptyFieldsCount.value === 0) {
         for (let i = 0; i < document.getElementsByName('sku_category').length; i++) {
           let cat_id = document.getElementsByName('sku_category')[i].getAttribute('data-value-id');
+          let brand_id = document.getElementsByName('brand')[i].getAttribute('data-value-id');
           let sku_ids = [];
-          document.querySelectorAll("[name='skus_of_cat__" + cat_id + "']:checked").forEach((element) => {
+          document.querySelectorAll("[name='skus_of_cat__"+cat_id+"__brand"+brand_id+"']:checked").forEach((element) => {
             sku_ids.push(parseInt(element.value));
           });
           info.push({
             sku_category_id: parseInt(cat_id),
-            brand_id: document.getElementsByName('brand')[i].getAttribute('data-value-id'),
+            brand_id: brand_id,
             sku_ids: sku_ids,
             face: document.getElementsByName('face')[i].value,
             presence: document.getElementsByName('presence')[i].value,
@@ -118,7 +119,7 @@ export default {
       }
     }
     return {
-      brands, addBrand, customer,visitor, findCustomer, router,route, form, removeBrand, saveForm, emptyFieldsCount
+      formSections, addBrand, customer,visitor, findCustomer, router,route, form, removeBrand, saveForm, emptyFieldsCount
     }
   }
 }

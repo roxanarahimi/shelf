@@ -1,18 +1,20 @@
 <template>
-  <div class="text-start px-4">
+  <div  class="text-start px-4">
     <b class="mb-4 text-start d-block ">فرم شلف مانیتورینگ</b>
-    <div class="d-flex justify-content-end mb-3">
-      <b>تاریخ:</b>
-      <p class="d-inline-block">{{ form?.created_at }}</p>
-    </div>
-    <customer-info v-if="customer.id" :customer="customer"/>
-    <div class="mt-3 " v-if="form.id">
-      <b> برند های موجود</b>
-      <form-section v-for="(item,index) in form.sections " :section="item" :index="index"/>
-    </div>
-    <div class="px-0">
-      <label>توضیحات</label>
-      <p>{{ form.description }}</p>
+    <div  v-if="form.id">
+      <div class="d-flex justify-content-end mb-3">
+        <b>تاریخ:</b>
+        <p class="d-inline-block">{{ form.created_at }}</p>
+      </div>
+      <customer-info v-if="customer.id" :customer="customer"/>
+      <div class="mt-3 " v-if="form.id">
+        <b> برند های موجود</b>
+        <form-section v-for="(item,index) in form.sections " :section="item" :index="index"/>
+      </div>
+      <div class="px-0">
+        <label>توضیحات</label>
+        <p>{{ form.description }}</p>
+      </div>
     </div>
 
   </div>
