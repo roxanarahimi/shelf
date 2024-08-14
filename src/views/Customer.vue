@@ -36,7 +36,7 @@
 
     </div>
     <div class="px-1 d-flex justify-content-between align-self-end">
-      <router-link v-show="customer.id" :to="'/form/'+customer.id" class="btn"
+      <router-link v-show="customer.id" :to="'/create/form/'+customer.id" class="btn"
                    style="background-color: #e70000; color: white">ایجاد فرم
       </router-link>
       <router-link :to="'/grade/'+customer.id" v-show="customer.id" class="btn btn-secondary">گرید بندی</router-link>

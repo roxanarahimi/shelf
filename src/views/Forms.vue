@@ -7,8 +7,8 @@
     </div>
     <div v-for="(item,index) in visitor.forms" :class="{'bg-light': index%2 == 0}" class="d-flex justify-content-between">
       <router-link :to="'/form/'+item.id" class="w-100 d-flex justify-content-between p-4">
-        <div>12345678910</div>
-        <div>1403/05/10</div>
+        <div>{{ item.customer.code }}</div>
+        <div>{{ item.created_at }}</div>
       </router-link>
     </div>
 
@@ -30,8 +30,8 @@ export default {
 
     onBeforeMount(()=>{
       App.setup().checkUser();
-      // App.setup().reloadVisitor();
-
+      App.setup().reloadVisitor();
+      visitor.value = JSON.parse(localStorage.getItem('user'));
     });
     return{
       visitor,route, panelUrl, router

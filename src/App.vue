@@ -41,15 +41,17 @@ import {useRouter} from "vue-router";
 export default {
   setup() {
     const router = useRouter()
-    const panelUrl = 'https://panel.shelf.webagent.ir/api/';
-    // const panelUrl = 'http://localhost:8000/api/';
+    // const panelUrl = 'https://panel.shelf.webagent.ir/api/';
+    const panelUrl = 'http://localhost:8000/api/';
     const visitor = ref({});
     const user = ref({});
     const checkUser = () => {
       if (JSON.parse(localStorage.getItem('user'))?.id) {
         user.value = JSON.parse(localStorage.getItem('user'));
         visitor.value = JSON.parse(localStorage.getItem('user'));
-        document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
+        if(visitor.value){
+          document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
+        }
 
       } else {
         document.querySelector('#visitor-name').innerHTML = '';
@@ -58,11 +60,14 @@ export default {
     };
     onMounted(() => {
       visitor.value = JSON.parse(localStorage.getItem('user'));
-      document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value?.name;
-    })
+      if(visitor.value){
+        document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
+      }    })
     onUpdated(() => {
       visitor.value = JSON.parse(localStorage.getItem('user'));
-      document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
+      if(visitor.value){
+        document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
+      }
     })
     const EmptyFieldsCount = () => {
       let emptyFieldsCount = 0;
@@ -86,7 +91,6 @@ export default {
       router.push({name: 'login'});
     }
     const reloadVisitor = () => {
-      console.log(localStorage);
       axios.get(panelUrl + 'visitor/' + JSON.parse(localStorage.getItem('user')).id)
           .then((response) => {
             visitor.value = response.data;
