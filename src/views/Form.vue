@@ -26,7 +26,7 @@
 <script>
 import {onBeforeMount, ref} from "vue";
 import App from "@/App";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import FormSection from "@/components/FormSection";
 import CustomerInfo from "@/components/CustomerInfo";
 
@@ -34,6 +34,7 @@ export default {
   name: "Form",
   components: {CustomerInfo, FormSection},
   setup() {
+    const router = useRouter();
     const route = useRoute();
     const panelUrl = App.setup().panelUrl;
     const customer = ref({})
@@ -106,13 +107,18 @@ export default {
           form: info,
         })
         .then((response)=>{
-          route.push({name: 'forms'});
+          if (response.status === 201 || response.status === 200) {
+            App.setup().reloadVisitor();
+            setTimeout(() => {
+              router.push({name: 'forms'});
+            }, 1000);
+          }
         }).catch((error)=>{ console.error(error)});
       }
       // console.log('info', info);
     }
     return {
-      brands, addBrand, customer,visitor, findCustomer, route, form, removeBrand, saveForm, emptyFieldsCount
+      brands, addBrand, customer,visitor, findCustomer, router,route, form, removeBrand, saveForm, emptyFieldsCount
     }
   }
 }

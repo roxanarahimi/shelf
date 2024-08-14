@@ -41,8 +41,8 @@ import {useRouter} from "vue-router";
 export default {
   setup() {
     const router = useRouter()
-    const panelUrl = 'https://panel.shelf.webagent.ir/api/';
-    // const panelUrl = 'http://localhost:8000/api/';
+    // const panelUrl = 'https://panel.shelf.webagent.ir/api/';
+    const panelUrl = 'http://localhost:8000/api/';
     const visitor = ref({});
     const user = ref({});
     const checkUser = () => {
@@ -58,7 +58,7 @@ export default {
     };
     onMounted(() => {
       visitor.value = JSON.parse(localStorage.getItem('user'));
-      document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
+      document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value?.name;
     })
     onUpdated(() => {
       visitor.value = JSON.parse(localStorage.getItem('user'));
@@ -85,8 +85,19 @@ export default {
       localStorage.removeItem('user');
       router.push({name: 'login'});
     }
+    const reloadVisitor = () => {
+      console.log(localStorage);
+      axios.get(panelUrl + 'visitor/' + JSON.parse(localStorage.getItem('user')).id)
+          .then((response) => {
+            visitor.value = response.data;
+            localStorage.setItem('user',JSON.stringify(response.data));
+          }).catch((error) => {
+        console.error(error)
+      });
+    }
+
     return {
-      user, checkUser, logout, EmptyFieldsCount, panelUrl, visitor, router
+      user, checkUser, logout, EmptyFieldsCount, panelUrl, visitor, router,reloadVisitor
     }
   },
 
