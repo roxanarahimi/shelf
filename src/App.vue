@@ -59,10 +59,11 @@ export default {
       }
     };
     onMounted(() => {
-      visitor.value = JSON.parse(localStorage.getItem('user'));
-      if(visitor.value){
-        document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
-      }    })
+      // visitor.value = JSON.parse(localStorage.getItem('user'));
+      // if(visitor.value){
+      //   document.querySelector('#visitor-name').innerHTML = 'کارشناس '+visitor.value.name;
+      // }
+    })
     onUpdated(() => {
       visitor.value = JSON.parse(localStorage.getItem('user'));
       if(visitor.value){
