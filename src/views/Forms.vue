@@ -30,8 +30,8 @@ export default {
 
     onBeforeMount(()=>{
       App.setup().checkUser();
-      App.setup().reloadVisitor();
-      visitor.value = JSON.parse(localStorage.getItem('user'));
+      // App.setup().reloadVisitor();
+      // visitor.value = JSON.parse(localStorage.getItem('user'));
     });
     return{
       visitor,route, panelUrl, router

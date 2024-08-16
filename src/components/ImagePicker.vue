@@ -12,7 +12,8 @@
     </div>
   </div>
 <!--  <input type="file" id="image0" @change="fileChanged" accept=".jpg, .png" >-->
-  <input class="d-none" type="file" :id="'image_'+index" @change="fileChanged" accept="image/*" capture="environment">
+  <input type="hidden" :name="'image'" :id="'image_code_'+index" v-model="imageSrc">
+  <input class="d-none" type="file"  :id="'image_'+index" @change="fileChanged" accept="image/*" capture="environment">
 </template>
 
 <script>
@@ -20,7 +21,7 @@ import {ref, watchEffect} from "vue";
 
 export default {
   name: "ImagePicker",
-  props: ['index'],
+  props: ['index','name'],
   setup(_props){
     const selectFile = ()=>{
       document.querySelector('#image_'+_props.index).click();

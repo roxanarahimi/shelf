@@ -120,6 +120,7 @@ export default {
         product_variety: document.querySelector('#product_variety').value,
         product_layout: document.querySelector('#product_layout').value,
         equipment: document.querySelector('#equipment').value,
+        image: document.querySelector('#image_code_1').value,
       })
           .then((response) => {
             router.push({path: '/customer', query: {code: customer.value.code}})

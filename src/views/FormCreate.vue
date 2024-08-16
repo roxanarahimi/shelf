@@ -17,7 +17,9 @@
     </div>
     <div class="px-0 my-4">
       <p v-if="emptyFieldsCount" class="error">لطفا همه فیلدها را پر کنید</p>
-      <button class="btn" style="background-color: #e70000; color: white" @click="saveForm">ذخیره</button>
+      <BtnSubmit @click.prevent="saveForm">
+        ثبت
+      </BtnSubmit>
     </div>
 
   </div>
@@ -29,10 +31,11 @@ import App from "@/App";
 import {useRoute, useRouter} from "vue-router";
 import FormSectionForm from "@/components/FormSectionForm";
 import CustomerInfo from "@/components/CustomerInfo";
+import BtnSubmit from "@/components/BtnSubmit";
 
 export default {
   name: "Form",
-  components: {CustomerInfo, FormSectionForm},
+  components: {CustomerInfo, FormSectionForm, BtnSubmit},
   setup() {
     const router = useRouter();
     const route = useRoute();
@@ -99,7 +102,8 @@ export default {
             expire_date: document.getElementsByName('expire_year')[i].value + '-' + document.getElementsByName('expire_month')[i].value + '-' + document.getElementsByName('expire_day')[i].value,
             label_price: document.getElementsByName('label_price')[i].value,
             sale_price: document.getElementsByName('sale_price')[i].value,
-            distribute_price: document.getElementsByName('distribute_price')[i].value
+            distribute_price: document.getElementsByName('distribute_price')[i].value,
+            image: document.getElementsByName('image')[i].value
           });
         }
         axios.post(panelUrl+'form', {
@@ -111,9 +115,11 @@ export default {
         .then((response)=>{
           if (response.status === 201 || response.status === 200) {
             App.setup().reloadVisitor();
+            visitor.value = JSON.parse(localStorage.getItem('user'));
+
             setTimeout(() => {
               router.push({name: 'forms'});
-            }, 1000);
+            }, 2000);
           }
         }).catch((error)=>{ console.error(error)});
       }
