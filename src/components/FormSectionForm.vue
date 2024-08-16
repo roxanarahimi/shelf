@@ -141,7 +141,7 @@
 
     <div class="col-12 px-1 mt-2">
       <label>تصویر چیدمان</label>
-      <image-picker :index="index" name="formSectionImage" />
+      <image-picker :index="index" name="formSectionImage" style="border-radius: 5px;" />
     </div>
     <!--        <hr class="my-4 " style="border:  dashed #e70000 1px;opacity: 0.8; ">-->
 
