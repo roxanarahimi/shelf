@@ -56,7 +56,7 @@
 
       <div class="px-1">
         <label>تصویر سردر سوپر مارکت</label>
-        <image-picker index="1" />
+        <image-picker index="1" :img="customer.scores?.image" />
       </div>
     </div>
 
@@ -67,7 +67,9 @@
 
 
     <div class="align-self-end my-2 ">
-      <button @click="saveScores"  class="btn bg">ذخیره</button>
+      <BtnSubmit @click.prevent="saveScores">
+        ثبت
+      </BtnSubmit>
     </div>
 
 
@@ -82,10 +84,11 @@ import {useRoute} from "vue-router";
 import router from "@/router";
 import CustomerInfo from "@/components/CustomerInfo";
 import ImagePicker from "@/components/ImagePicker";
+import BtnSubmit from "@/components/BtnSubmit";
 
 export default {
   name: "Grade",
-  components: {ImagePicker, CustomerInfo},
+  components: {ImagePicker, CustomerInfo, BtnSubmit},
   setup() {
     const route = useRoute();
     const panelUrl = App.setup().panelUrl;

@@ -53,7 +53,7 @@
     <div v-if="section.image" class="col-12 px-1 mt-2">
       <label>تصویر چیدمان</label>
       <div class="rounded d-grid text-center cursor-pointer"  style="border: dashed #c5c8cb 1px; min-height: 200px;">
-        <img :src="'http://localhost:8000/'+section.image" class="w-100" alt="">
+        <img :src="section.image" class="w-100" alt="">
       </div>
     </div>
     <!--        <hr class="my-4 " style="border:  dashed #e70000 1px;opacity: 0.8; ">-->
