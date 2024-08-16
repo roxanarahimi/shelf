@@ -11,7 +11,9 @@
         <input type="password" class="form-control form-control-sm en" name="date" id="password" required>
       </div>
       <div class="col-12  px-1 text-center mt-4">
-        <button @click="login" class="btn mx-auto px-4" style="background-color: #e70000; color: white">ورود</button>
+        <BtnSubmit @click.prevent="login">
+          ورود
+        </BtnSubmit>
       </div>
     </div>
   </div>
@@ -21,9 +23,11 @@
 import {onBeforeMount, onMounted, ref} from "vue";
 import App from "@/App";
 import {useRouter} from "vue-router";
+import BtnSubmit from "@/components/BtnSubmit";
 
 export default {
   name: "Login",
+  components: {BtnSubmit},
   setup(){
     const router = useRouter()
     const user = ref({});
