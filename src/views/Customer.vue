@@ -1,5 +1,5 @@
 <template>
-  <div class="d-grid h-100 px-4 w-100">
+  <div class="d-grid h-100 px-3 w-100">
     <div class="row text-start px-2 align-self-start">
       <b class="mb-5 text-start d-block  ">جستجوی مشتری</b>
       <div class="col-12 px-1 ">

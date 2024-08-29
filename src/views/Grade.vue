@@ -1,5 +1,5 @@
 <template>
-  <div class="d-grid text-start h-100 px-4">
+  <div class="d-grid text-start h-100 px-3">
     <b class="mb-4 text-start d-block  ">گرید بندی فروشگاه</b>
     <customer-info v-if="customer.id" :customer="customer"/>
 

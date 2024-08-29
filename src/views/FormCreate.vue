@@ -1,5 +1,5 @@
 <template>
-  <div class="text-start px-4">
+  <div class="text-start px-3">
     <b class="mb-4 text-start d-block ">فرم شلف مانیتورینگ</b>
 <!--    <div class="d-flex justify-content-end mb-3">-->
 <!--      <b>تاریخ:</b>-->
@@ -65,14 +65,14 @@ export default {
         'space': '',
         'layout': '',
         'sku_ids': '',
-        'face': '',
-        'presence': '',
-        'expire_day': '',
-        'expire_month': '',
-        'expire_year': '',
-        'label_price': '',
-        'sale_price': '',
-        'distribute_price': ''
+        // 'face': '',
+        // 'presence': '',
+        // 'expire_day': '',
+        // 'expire_month': '',
+        // 'expire_year': '',
+        // 'label_price': '',
+        // 'sale_price': '',
+        // 'distribute_price': ''
       };
       formSections.value.push(obj);
     }
@@ -87,25 +87,30 @@ export default {
         for (let i = 0; i < document.getElementsByName('sku_category').length; i++) {
           let cat_id = document.getElementsByName('sku_category')[i].getAttribute('data-value-id');
           let brand_id = document.getElementsByName('brand')[i].getAttribute('data-value-id');
-          let sku_ids = [];
-          document.querySelectorAll("[name='skus_of_cat__"+cat_id+"__brand"+brand_id+"']:checked").forEach((element) => {
-            sku_ids.push(parseInt(element.value));
-          });
+          let sectionSkus = [];
+          let formSectionSkus =document.getElementsByName('sku_of_category_'+cat_id+'_brand_'+brand_id);
+          for (let j = 0; j < formSectionSkus.length; j++) {
+            sectionSkus.push({
+              sku_id: formSectionSkus[j].value,
+              face: document.getElementById('face_'+i+'_'+j).value,
+              presence: document.getElementById('presence_'+i+'_'+j).value,
+              expire_date: document.getElementById('expire_year_'+i+'_'+j).value + '-' + document.getElementById('expire_month_'+i+'_'+j).value + '-' + document.getElementById('expire_day_'+i+'_'+j).value,
+              label_price: document.getElementById('label_price_'+i+'_'+j).value,
+              sale_price: document.getElementById('sale_price_'+i+'_'+j).value,
+              distribute_price: document.getElementById('distribute_price_'+i+'_'+j).value,
+            });
+          }
           info.push({
             sku_category_id: parseInt(cat_id),
             brand_id: brand_id,
-            sku_ids: sku_ids,
-            face: document.getElementsByName('face')[i].value,
-            presence: document.getElementsByName('presence')[i].value,
             space: document.getElementsByName('space')[i].value,
             layout: document.getElementsByName('layout')[i].value,
-            expire_date: document.getElementsByName('expire_year')[i].value + '-' + document.getElementsByName('expire_month')[i].value + '-' + document.getElementsByName('expire_day')[i].value,
-            label_price: document.getElementsByName('label_price')[i].value,
-            sale_price: document.getElementsByName('sale_price')[i].value,
-            distribute_price: document.getElementsByName('distribute_price')[i].value,
+            skus: sectionSkus,
             image: document.getElementsByName('image')[i].value
           });
         }
+
+        // console.log('info',info)
         axios.post(panelUrl+'form', {
           visitor_id: visitor.id,
           customer_id: route.params.id,

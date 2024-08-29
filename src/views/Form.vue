@@ -1,18 +1,102 @@
 <template>
-  <div  class="text-start px-4">
+  <div class="text-start px-3">
     <b class="mb-4 text-start d-block ">فرم شلف مانیتورینگ</b>
-    <div  v-if="form.id">
+    <div v-if="form.id">
       <div class="d-flex justify-content-end mb-3">
         <b>تاریخ:</b>
         <p class="d-inline-block">{{ form.created_at }}</p>
       </div>
       <customer-info v-if="customer.id" :customer="customer"/>
-      <div class="mt-3 " v-if="form.id">
-        <b> برند های موجود</b>
-        <form-section v-for="(item,index) in form.sections " :section="item" :index="index"/>
+      <!--      <div class="mt-3 " v-if="form.id">-->
+      <!--        <b> برند های موجود</b>-->
+      <!--        <form-section v-for="(item,index) in form.sections " :section="item" :index="index"/>-->
+      <!--      </div>-->
+      <!--     <div class="mt-3 border rounded" style="overflow:hidden" v-if="form.id">-->
+      <!--       <div v-for="(section,index) in form.sections" :key="index">-->
+      <!--         <table class="table mb-0">-->
+      <!--           <thead class="bgHead">-->
+      <!--           <tr >-->
+      <!--             <th class="py-3" >نوع محصول</th>-->
+      <!--             <th class="py-3 text-center" >برند</th>-->
+      <!--             <th class="py-3 text-center" >فضای تبلیغاتی</th>-->
+      <!--             <th class="py-3 text-center" >چیدمان</th>-->
+      <!--           </tr>-->
+      <!--           </thead>-->
+      <!--           <tbody>-->
+      <!--           <tr>-->
+      <!--             <td>{{ section.skuCategory.title}}</td>-->
+      <!--             <td class="text-center">{{ section.brand.title }}</td>-->
+      <!--             <td class="text-center">{{ section.space}}</td>-->
+      <!--             <td class="text-center">{{ section.layout }}</td>-->
+      <!--           </tr>-->
+      <!--           </tbody>-->
+      <!--         </table>-->
+
+      <!--         <table class="table mb-0">-->
+      <!--           <thead>-->
+      <!--           <tr class="bg-light">-->
+      <!--             <th class="" >sku</th>-->
+      <!--             <th class="text-center" >تعداد در دیدرس</th>-->
+      <!--             <th class="text-center" >شدت حضور</th>-->
+      <!--             <th class="en" >تاریخ انقضا</th>-->
+      <!--             <th class="en" >قیمت بسته</th>-->
+      <!--             <th class="en" >قیمت فروش</th>-->
+      <!--             <th class="en" >قیمت پخش</th>-->
+      <!--           </tr>-->
+      <!--           </thead>-->
+      <!--           <tbody>-->
+      <!--           <tr v-for="(item,i) in section.skus" :key="i">-->
+      <!--             <td style="width: 50px !important">{{ item.sku.title }}</td>-->
+      <!--             <td class="text-center" >{{ item.face }}</td>-->
+      <!--             <td class="text-center">{{ item.presence }}</td>-->
+      <!--             <td class="en" style="width: 60px !important">{{ item.expire_date }}</td>-->
+      <!--             <td class="en">{{ item.label_price }}</td>-->
+      <!--             <td class="en">{{ item.sale_price }}</td>-->
+      <!--             <td class="en">{{ item.distribute_price }}</td>-->
+      <!--           </tr>-->
+      <!--           </tbody>-->
+      <!--         </table>-->
+
+      <!--       </div>-->
+      <!--      </div>-->
+
+      <div class="mt-3 border rounded" style="overflow:hidden" v-if="form.id">
+        <!--        <div v-for="(section,index) in form.sections" :key="index">-->
+
+        <table class="table table-responsive mb-0">
+          <thead>
+          <tr class="bgHead">
+            <th class="" >sku</th>
+            <th class="text-center" >تعداد در دیدرس</th>
+            <th class="text-center" >شدت حضور</th>
+            <th class="en" >تاریخ انقضا</th>
+            <th class="en" >قیمت بسته</th>
+            <th class="en" >قیمت فروش</th>
+            <th class="en" >قیمت پخش</th>
+            <th class="text-center">فضای تبلیغاتی</th>
+            <th class="text-center" >چید مان</th>
+          </tr>
+          </thead>
+          <tbody v-for="(section,index) in form.sections" :key="index">
+          <tr v-for="(item,i) in section.skus" :key="i">
+            <td>{{ item.sku.title }}</td>
+            <td class="text-center">{{ item.face }}</td>
+            <td class="text-center">{{ item.presence }}</td>
+            <td class="en">{{ item.expire_date_space }}</td>
+            <td class="en">{{ item.label_price }}</td>
+            <td class="en">{{ item.sale_price }}</td>
+            <td class="en">{{ item.distribute_price }}</td>
+            <td class="en">{{ section.space }}</td>
+            <td class="text-center">{{ section.layout }}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <!--        </div>-->
       </div>
-      <div class="px-0">
-        <label>توضیحات</label>
+
+      <div class="px-0 py-3">
+        <b>توضیحات</b>
         <p>{{ form.description }}</p>
       </div>
     </div>
@@ -47,7 +131,7 @@ export default {
       });
     }
     const loadForm = () => {
-      axios.get(panelUrl + 'form/'+route.params.id)
+      axios.get(panelUrl + 'form/' + route.params.id)
           .then((response) => {
             form.value = response.data;
           }).then((response) => {
@@ -62,7 +146,7 @@ export default {
     });
 
     return {
-      visitor, router,route, emptyFieldsCount,loadForm, form,customer,findCustomer
+      visitor, router, route, emptyFieldsCount, loadForm, form, customer, findCustomer
     }
   }
 }
@@ -72,4 +156,23 @@ export default {
 label {
   font-size: 12px;
 }
+
+th {
+  font-size: 9px;
+}
+
+td {
+  font-size: 10px;
+
+}
+
+.table, rt, td, th {
+  background-color: transparent;
+}
+
+.bgHead {
+  border: solid rgba(231, 0, 0, 0.1) 1px;
+  background-color: rgba(231, 0, 0, 0.05)
+}
+
 </style>

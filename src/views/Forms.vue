@@ -31,7 +31,9 @@ export default {
     onBeforeMount(()=>{
       App.setup().checkUser();
       App.setup().reloadVisitor();
-      visitor.value = JSON.parse(localStorage.getItem('user'));
+      setTimeout(()=>{
+        visitor.value = JSON.parse(localStorage.getItem('user'));
+      },1000)
     });
     return{
       visitor,route, panelUrl, router

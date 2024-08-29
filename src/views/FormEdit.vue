@@ -1,5 +1,5 @@
 <template>
-  <div class="text-start px-4">
+  <div class="text-start px-3">
     <b class="mb-4 text-start d-block ">فرم شلف مانیتورینگ</b>
     <div class="d-flex justify-content-end mb-3">
       <b>تاریخ:</b>

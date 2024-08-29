@@ -1,5 +1,5 @@
 <template>
-  <div class="d-grid h-100 px-4">
+  <div class="d-grid h-100 px-3">
     <div class="row text-start px-2 align-self-center">
       <b class="text-center">ورود کارشناس</b>
       <div class="col-12 px-1 ">
