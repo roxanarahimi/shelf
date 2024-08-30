@@ -79,7 +79,7 @@ export default {
     const removeBrand = (index) => {
       formSections.value.splice(index, 1);
     }
-
+    const images = ref([]);
     const saveForm = () => {
       emptyFieldsCount.value = App.setup().EmptyFieldsCount();
       let info = [];
@@ -106,17 +106,27 @@ export default {
             space: document.getElementsByName('space')[i].value,
             layout: document.getElementsByName('layout')[i].value,
             skus: sectionSkus,
-            image: document.getElementsByName('image')[i].value
+            // image: document.getElementsByName('image')[i].value
           });
         }
-
+        let formData = new FormData();
+        console.log('iiiiii',images.value[0]);
+        for(let i=0; i<images.value.length; i++){
+          formData.append('image_'+i, images.value[i]);
+        }
+        formData.append('visitor_id', visitor.id);
+        formData.append('customer_id', route.params.id,);
+        formData.append('description', document.querySelector('#description').value);
+        formData.append('form', JSON.stringify(info));
         // console.log('info',info)
-        axios.post(panelUrl+'api/form', {
-          visitor_id: visitor.id,
-          customer_id: route.params.id,
-          description: document.querySelector('#description').value,
-          form: info,
-        })
+        axios.post(panelUrl+'api/form', formData
+        //     {
+        //   visitor_id: visitor.id,
+        //   customer_id: route.params.id,
+        //   description: document.querySelector('#description').value,
+        //   form: info,
+        // }
+        )
         .then((response)=>{
           if (response.status === 201 || response.status === 200) {
             App.setup().reloadVisitor();
@@ -130,7 +140,8 @@ export default {
       }
     }
     return {
-      formSections, addBrand, customer,visitor, findCustomer, router,route, form, removeBrand, saveForm, emptyFieldsCount
+      formSections, addBrand, customer,visitor, findCustomer, router,route, form, removeBrand, saveForm, emptyFieldsCount,
+      images,
     }
   }
 }

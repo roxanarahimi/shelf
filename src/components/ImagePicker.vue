@@ -19,15 +19,16 @@
   </div>
 <!--  <input type="file" id="image0" @change="fileChanged" accept=".jpg, .png" >-->
   <input type="hidden" :name="'image'" :id="'image_code_'+index" v-model="imageSrc">
-  <input class="d-none" type="file"  :id="'image_'+index" @change="fileChanged" accept="image/*" capture="environment">
+  <input class="d-none" type="file" name="img" :id="'image_'+index" @change="fileChanged" accept="image/*" capture="environment">
 </template>
 
 <script>
-import {onMounted, ref, watchEffect} from "vue";
+import {getCurrentInstance, onMounted, ref, watchEffect} from "vue";
 
 export default {
   name: "ImagePicker",
   props: ['index','name','img'],
+
   setup(_props){
     const selectFile = ()=>{
       document.querySelector('#image_'+_props.index).click();
@@ -41,13 +42,14 @@ export default {
     // onMounted(()=>{
     //   imageSrc.value = _props.img;
     // })
+    const instance = getCurrentInstance();
     const fileChanged = (e)=>{
       let files = e.target.files || e.dataTransfer.files;
       if (files.length) {
         selectedFile.value = files[0];
       }
-      console.log('files',imageSrc.value);
-
+      instance.parent.parent.setupState.images[_props.index] = selectedFile.value;
+      console.log('aaa',instance.parent.parent.setupState.images);
     }
     watchEffect(() => {
       if (selectedFile.value) {
@@ -60,7 +62,7 @@ export default {
     });
 
     return{
-      selectFile, fileChanged,selectedFile, imageSrc, fileReader
+      selectFile, fileChanged,selectedFile, imageSrc, fileReader,instance
     }
   }
 }
