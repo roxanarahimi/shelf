@@ -60,16 +60,16 @@
       <!--       </div>-->
       <!--      </div>-->
 
-      <div class="mt-3 border rounded" style="overflow:hidden" v-if="form.id">
+      <div class="mt-3 border rounded" style="overflow-y: scroll" v-if="form.id">
         <!--        <div v-for="(section,index) in form.sections" :key="index">-->
 
-        <table class="table table-responsive mb-0">
+        <table class="table table-responsive rounded mb-0">
           <thead>
           <tr class="bgHead">
             <th class="" >sku</th>
             <th class="text-center" >تعداد در دیدرس</th>
             <th class="text-center" >شدت حضور</th>
-            <th class="en" >تاریخ انقضا</th>
+            <th class="en">تاریخ انقضا</th>
             <th class="en" >قیمت بسته</th>
             <th class="en" >قیمت فروش</th>
             <th class="en" >قیمت پخش</th>
@@ -82,7 +82,7 @@
             <td>{{ item.sku.title }}</td>
             <td class="text-center">{{ item.face }}</td>
             <td class="text-center">{{ item.presence }}</td>
-            <td class="en">{{ item.expire_date_space }}</td>
+            <td class="en" style="width: 200px !important">{{ item.expire_date }}</td>
             <td class="en">{{ item.label_price }}</td>
             <td class="en">{{ item.sale_price }}</td>
             <td class="en">{{ item.distribute_price }}</td>
@@ -157,14 +157,14 @@ label {
   font-size: 12px;
 }
 
-th {
-  font-size: 9px;
-}
+/*th {*/
+/*  font-size: 12px;*/
+/*}*/
 
-td {
-  font-size: 10px;
+/*td {*/
+/*  font-size: 14px;*/
 
-}
+/*}*/
 
 .table, rt, td, th {
   background-color: transparent;
