@@ -60,7 +60,7 @@
       <!--       </div>-->
       <!--      </div>-->
 
-      <div class="mt-3 border rounded" style="overflow-y: scroll" v-if="form.id">
+      <div class="mt-3 border rounded border-bottom-0" style="overflow-y: scroll" v-if="form.id">
         <!--        <div v-for="(section,index) in form.sections" :key="index">-->
 
         <table class="table table-responsive rounded mb-0">
@@ -79,14 +79,14 @@
           </thead>
           <tbody v-for="(section,index) in form.sections" :key="index">
           <tr v-for="(item,i) in section.skus" :key="i">
-            <td>{{ item.sku.title }}</td>
-            <td class="text-center">{{ item.face }}</td>
-            <td class="text-center">{{ item.presence }}</td>
-            <td class="en" style="width: 200px !important">{{ item.expire_date }}</td>
-            <td class="en">{{ item.label_price }}</td>
-            <td class="en">{{ item.sale_price }}</td>
-            <td class="en">{{ item.distribute_price }}</td>
-            <td class="en">{{ section.space }}</td>
+            <td class="text-nowrap">{{ item.sku.title }}</td>
+            <td class="text-center text-nowrap">{{ item.face }}</td>
+            <td class="text-center text-nowrap">{{ item.presence }}</td>
+            <td class="en text-nowrap">{{ item.expire_date }}</td>
+            <td class="en text-nowrap">{{ item.label_price }}</td>
+            <td class="en text-nowrap">{{ item.sale_price }}</td>
+            <td class="en text-nowrap">{{ item.distribute_price }}</td>
+            <td class="en text-nowrap">{{ section.space }}</td>
             <td class="text-center">{{ section.layout }}</td>
           </tr>
           </tbody>
