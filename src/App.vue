@@ -42,6 +42,7 @@ export default {
   setup() {
     const router = useRouter()
     const panelUrl = 'https://panel.shelf.webagent.ir/';
+    const storageUrl = 'https://webagent.ir/projects/ShelfMonitoring/panel.shelf/storage/';
     // const panelUrl = 'http://localhost:8000/';
     const visitor = ref({});
     const user = ref({});
@@ -102,7 +103,7 @@ export default {
     }
 
     return {
-      user, checkUser, logout, EmptyFieldsCount, panelUrl, visitor, router,reloadVisitor
+      user, checkUser, logout, EmptyFieldsCount, panelUrl, visitor, router,reloadVisitor,storageUrl
     }
   },
 

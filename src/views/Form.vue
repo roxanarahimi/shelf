@@ -90,7 +90,7 @@
             <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">{{ section.space }}</td>
             <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">{{ section.layout }}</td>
             <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">
-              <img v-if="section.image" :src="section.image" width="80px">
+              <img v-if="section.image" :src="storageUrl+section.image" width="80px">
             </td>
 
           </tr>
@@ -123,6 +123,7 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const panelUrl = App.setup().panelUrl;
+    const storageUrl = App.setup().storageUrl;
     const visitor = JSON.parse(localStorage.getItem('user'));
     const emptyFieldsCount = ref(0);
     const customer = ref({});
@@ -151,7 +152,7 @@ export default {
     });
 
     return {
-      visitor, router, route, emptyFieldsCount, loadForm, form, customer, findCustomer,panelUrl
+      visitor, router, route, emptyFieldsCount, loadForm, form, customer, findCustomer,panelUrl,storageUrl
     }
   }
 }

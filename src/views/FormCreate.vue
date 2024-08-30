@@ -110,7 +110,7 @@ export default {
           });
         }
         let formData = new FormData();
-        console.log('iiiiii',images.value[0]);
+        // console.log('iiiiii',images.value[0]);
         for(let i=0; i<images.value.length; i++){
           formData.append('image_'+i, images.value[i]);
         }
