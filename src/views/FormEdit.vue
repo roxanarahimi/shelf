@@ -42,7 +42,7 @@ export default {
     const form = ref({})
     const emptyFieldsCount = ref(0);
     const findCustomer = () => {
-      axios.get(panelUrl + 'customer/' + route.params.id)
+      axios.get(panelUrl + 'api/customer/' + route.params.id)
           .then((response) => {
             customer.value = response.data;
           }).catch((error) => {
@@ -101,7 +101,7 @@ export default {
             distribute_price: document.getElementsByName('distribute_price')[i].value
           });
         }
-        axios.post(panelUrl+'form', {
+        axios.post(panelUrl+'api/form', {
           visitor_id: visitor.id,
           customer_id: route.params.id,
           form: info,

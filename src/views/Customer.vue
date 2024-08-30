@@ -56,7 +56,7 @@ export default {
     const route = useRoute();
     const customer = ref({})
     const findCustomer = () => {
-      axios.get(panelUrl + 'customer/by/code/' + document.querySelector('#code').value)
+      axios.get(panelUrl + 'api/customer/by/code/' + document.querySelector('#code').value)
           .then((response) => {
             customer.value = response.data;
           }).catch((error) => {

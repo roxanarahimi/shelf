@@ -79,7 +79,7 @@ export default {
     const selectedBrand = ref({})
     const skus = ref([])
     const loadSkuCategories = () => {
-      axios.get(panelUrl + 'category/sku')
+      axios.get(panelUrl + 'api/category/sku')
           .then((response) => {
             skuCategories.value = response.data;
           }).catch((error) => {
@@ -89,7 +89,7 @@ export default {
     const loadSkus = () => {
       console.log(selectedSkuCategory.value, selectedBrand.value);
       if (selectedSkuCategory.value && selectedBrand.value) {
-        axios.get(panelUrl + 'sku?sku_category_id=' + selectedSkuCategory.value.id + '&brand_id=' + selectedBrand.value.id)
+        axios.get(panelUrl + 'api/sku?sku_category_id=' + selectedSkuCategory.value.id + '&brand_id=' + selectedBrand.value.id)
             .then((response) => {
               skus.value = response.data;
               console.log(skus.value)

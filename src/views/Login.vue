@@ -36,7 +36,7 @@ export default {
       // App.setup().EmptyFieldsCount()
       let emptyFieldsCount = App.setup().EmptyFieldsCount();
       if(emptyFieldsCount === 0){
-        axios.post(App.setup().panelUrl+'visitor/login',{
+        axios.post(App.setup().panelUrl+'api/visitor/login',{
           username: document.querySelector('#mobile').value,
           password: document.querySelector('#password').value,
         })

@@ -75,6 +75,7 @@
             <th class="en" >قیمت پخش</th>
             <th class="text-center">فضای تبلیغاتی</th>
             <th class="text-center" >چید مان</th>
+            <th class="text-center" >تصویر چیدمان</th>
           </tr>
           </thead>
           <tbody v-for="(section,index) in form.sections" :key="index">
@@ -86,8 +87,12 @@
             <td class="en text-nowrap">{{ item.label_price }}</td>
             <td class="en text-nowrap">{{ item.sale_price }}</td>
             <td class="en text-nowrap">{{ item.distribute_price }}</td>
-            <td class="en text-nowrap">{{ section.space }}</td>
-            <td class="text-center">{{ section.layout }}</td>
+            <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">{{ section.space }}</td>
+            <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">{{ section.layout }}</td>
+            <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">
+              <img v-if="section.image" :src="section.image" width="80px">
+            </td>
+
           </tr>
           </tbody>
         </table>
@@ -123,7 +128,7 @@ export default {
     const customer = ref({});
     const form = ref({})
     const findCustomer = (id) => {
-      axios.get(panelUrl + 'customer/' + id)
+      axios.get(panelUrl + 'api/customer/' + id)
           .then((response) => {
             customer.value = response.data;
           }).catch((error) => {
@@ -131,7 +136,7 @@ export default {
       });
     }
     const loadForm = () => {
-      axios.get(panelUrl + 'form/' + route.params.id)
+      axios.get(panelUrl + 'api/form/' + route.params.id)
           .then((response) => {
             form.value = response.data;
           }).then((response) => {
@@ -146,7 +151,7 @@ export default {
     });
 
     return {
-      visitor, router, route, emptyFieldsCount, loadForm, form, customer, findCustomer
+      visitor, router, route, emptyFieldsCount, loadForm, form, customer, findCustomer,panelUrl
     }
   }
 }

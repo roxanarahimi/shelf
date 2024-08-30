@@ -95,7 +95,7 @@ export default {
     const customer = ref({});
     const sectors = ref([]);
     const findCustomer = () => {
-      axios.get(panelUrl + 'customer/' + route.params.id)
+      axios.get(panelUrl + 'api/customer/' + route.params.id)
           .then((response) => {
             customer.value = response.data;
           })
@@ -108,7 +108,7 @@ export default {
     }
 
     const loadSectors = () => {
-      axios.get(panelUrl + 'sector?city_id=' + customer.value.city.id)
+      axios.get(panelUrl + 'api/sector?city_id=' + customer.value.city.id)
           .then((response) => {
             sectors.value = response.data;
           }).catch((error) => {
@@ -116,7 +116,7 @@ export default {
       });
     }
     const saveScores = () => {
-      axios.post(panelUrl + 'score', {
+      axios.post(panelUrl + 'api/score', {
         customer_id: customer.value.id,
         sector_id: document.querySelector('#sector_id').value,
         meterage: document.querySelector('#meterage').value,
