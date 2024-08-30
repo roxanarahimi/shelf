@@ -17,10 +17,10 @@ export default {
         const submitForm = () => {
                 document.querySelector('#submit').setAttribute('disabled', 'disabled');
                 document.querySelector('.loader-sm').classList.remove('d-none');
-                setTimeout(()=>{
-                  document.querySelector('#submit').removeAttribute('disabled');
-                  document.querySelector('.loader-sm').classList.add('d-none');
-                },3000)
+                // setTimeout(()=>{
+                //   document.querySelector('#submit').removeAttribute('disabled');
+                //   document.querySelector('.loader-sm').classList.add('d-none');
+                // },3000)
         }
         return {
             submitForm,
