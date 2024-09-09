@@ -5,7 +5,7 @@
       <b>شماره مشتری</b>
       <b>تاریخ</b>
     </div>
-    <div v-for="(item,index) in visitor.forms" :class="{'bg-light': index%2 == 0}" class="d-flex justify-content-between">
+    <div v-for="(item,index) in forms" :class="{'bg-light': index%2 == 0}" class="d-flex justify-content-between">
       <router-link :to="'/form/'+item.id" class="w-100 d-flex justify-content-between p-4">
         <div>{{ item.customer.code }}</div>
         <div>{{ item.created_at }}</div>
@@ -27,16 +27,18 @@ export default {
     const router = useRouter();
     const panelUrl = App.setup().panelUrl;
     const visitor = JSON.parse(localStorage.getItem('user'));
+    const forms = [];
 
     onBeforeMount(()=>{
       App.setup().checkUser();
-      App.setup().reloadVisitor();
-      setTimeout(()=>{
-        visitor.value = JSON.parse(localStorage.getItem('user'));
-      },1000)
+      axios.get(panelUrl+'api/forms/visitor/'+visitor.id)
+      .then((response)=>{
+        forms.value = response.data;
+      }).catch((error)=>{console.error(error)})
+
     });
     return{
-      visitor,route, panelUrl, router
+      visitor,route, panelUrl, router,forms
     }
   },
 }
