@@ -20,6 +20,7 @@
     <div class="col-4 ps-0 pe-1 mb-3">
       <label :for="'space'+index">فضای تبلیغاتی</label>
       <select class="form-select form-select-sm" name="space" :id="'space'+index">
+        <option value="هیچکدام">هیچکدام</option>
         <option value="استیکر">استیکر</option>
         <option value="تابلو فروشگاه">تابلو فروشگاه</option>
         <option value="سایه بان">سایه بان</option>
