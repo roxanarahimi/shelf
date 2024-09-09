@@ -27,7 +27,7 @@ export default {
     const router = useRouter();
     const panelUrl = App.setup().panelUrl;
     const visitor = JSON.parse(localStorage.getItem('user'));
-    const forms = [];
+    const forms = ref([]);
 
     onBeforeMount(()=>{
       App.setup().checkUser();
