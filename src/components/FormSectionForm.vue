@@ -1,7 +1,7 @@
 <template>
   <div :id="'form-section-'+index" class="row mx-0 px-2 rounded  position-relative pt-2 pb-3 my-4 crdSection">
     <div @click="$parent.removeBrand(index)" class="crdSectionClose"><i class="bi bi-x-circle-fill"></i></div>
-    <div class="col-3 px-1 ">
+    <div class="col-4 px-1 ">
       <label :for="'sku_category_id'+index">نوع محصول</label>
       <select v-model="selectedSkuCategory" :data-value-id="selectedSkuCategory.id" name="sku_category"
            @change="tt"   class="form-select form-select-sm" :id="'sku_category_id'+index" required>
@@ -9,7 +9,7 @@
         <option v-for="item in skuCategories" :value="item">{{ item.title }}</option>
       </select>
     </div>
-    <div class="col-3 ps-0 pe-1 mb-3">
+    <div class="col-4 ps-0 pe-1">
       <label :for="'brand'+index">برند</label>
       <select v-model="selectedBrand" :data-value-id="selectedBrand.id" @change="loadSkus" name="brand"
               class="form-select form-select-sm" :id="'brand'+index" required>
@@ -17,7 +17,7 @@
         <option v-for="item in selectedSkuCategory.brands" :value="item.brand">{{ item.brand.title }}</option>
       </select>
     </div>
-    <div class="col-4 ps-0 pe-1 mb-3">
+    <div class="col-4 ps-0 pe-1">
       <label :for="'space'+index">فضای تبلیغاتی</label>
       <select class="form-select form-select-sm" name="space" :id="'space'+index">
         <option value="هیچکدام">هیچکدام</option>
@@ -34,16 +34,44 @@
         <option value="پلی شلف">پلی شلف</option>
       </select>
     </div>
-    <div class="col-2 ps-0 pe-1 mb-3">
-      <label :for="'layout'+index">چیدمان</label>
-      <select class="form-select form-select-sm" name="layout" :id="'layout'+index">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
+
+<!--    <div class="col-2 ps-0 pe-1 mb-3">-->
+<!--      <label :for="'layout'+index">چیدمان</label>-->
+<!--      <select class="form-select form-select-sm" name="layout" :id="'layout'+index">-->
+<!--        <option value="1">1</option>-->
+<!--        <option value="2">2</option>-->
+<!--        <option value="3">3</option>-->
+<!--        <option value="4">4</option>-->
+<!--        <option value="5">5</option>-->
+<!--      </select>-->
+<!--    </div>-->
+
+
+    <div class="col-4 px-1 mb-3">
+      <label :for="'space'+index">در دیدرس بودن</label>
+      <select class="form-select form-select-sm" name="layoutView" :id="'layoutView'+index">
+        <option value="1">بله</option>
+        <option value="0">خیر</option>
       </select>
     </div>
+    <div class="col-4 ps-0 pe-1 mb-3">
+      <label :for="'space'+index">تعداد در دیدرس</label>
+      <select class="form-select form-select-sm" name="layoutCount" :id="'layoutCount'+index">
+        <option value="2">خوب</option>
+        <option value="1">متوسط</option>
+        <option value="0">بد</option>
+      </select>
+    </div>
+    <div class="col-4 ps-0 pe-1 mb-3">
+      <label :for="'space'+index">نظم چیدمان</label>
+      <select class="form-select form-select-sm" name="layoutArrange" :id="'layoutArrange'+index">
+        <option value="2">خوب</option>
+        <option value="1">متوسط</option>
+        <option value="0">بد</option>
+      </select>
+    </div>
+
+
 
     <div class="col-12 px-1 mt-2">
       <div class="row m-0 p-0">
@@ -54,10 +82,10 @@
       </div>
     </div>
 
-    <div class="col-12 px-1 mt-2">
-      <label>تصویر چیدمان</label>
-      <image-picker :index="index"/>
-    </div>
+<!--    <div class="col-12 px-1 mt-2">-->
+<!--      <label>تصویر چیدمان</label>-->
+<!--      <image-picker :index="index"/>-->
+<!--    </div>-->
   </div>
 </template>
 

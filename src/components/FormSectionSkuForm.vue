@@ -17,13 +17,7 @@
     </div>
     <div class="col-3 ps-0 pe-1">
       <label :for="'presence_'+index+'_'+number">شدت حضور</label>
-      <select class="form-select form-select-sm" name="presence" :id="'presence_'+index+'_'+number">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+      <input type="number" min="0" class="form-control form-control-sm en"  name="presence" :id="'presence_'+index+'_'+number">
     </div>
     <div class="col-2 ps-0 pe-1">
       <label :for="'expire_day_'+index+'_'+number">تاریخ انقضا</label>

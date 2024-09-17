@@ -1,10 +1,10 @@
 <template>
   <div class="text-start px-3">
     <b class="mb-4 text-start d-block ">فرم شلف مانیتورینگ</b>
-<!--    <div class="d-flex justify-content-end mb-3">-->
-<!--      <b>تاریخ:</b>-->
-<!--      <p class="d-inline-block">1403/05/10</p>-->
-<!--    </div>-->
+    <!--    <div class="d-flex justify-content-end mb-3">-->
+    <!--      <b>تاریخ:</b>-->
+    <!--      <p class="d-inline-block">1403/05/10</p>-->
+    <!--    </div>-->
     <customer-info v-if="customer.id" :customer="customer"/>
     <div class="mt-3 ">
       <b> برند های موجود</b>
@@ -88,59 +88,83 @@ export default {
           let cat_id = document.getElementsByName('sku_category')[i].getAttribute('data-value-id');
           let brand_id = document.getElementsByName('brand')[i].getAttribute('data-value-id');
           let sectionSkus = [];
-          let formSectionSkus =document.getElementsByName('sku_of_category_'+cat_id+'_brand_'+brand_id);
+          let formSectionSkus = document.getElementsByName('sku_of_category_' + cat_id + '_brand_' + brand_id);
           for (let j = 0; j < formSectionSkus.length; j++) {
             sectionSkus.push({
               sku_id: formSectionSkus[j].value,
-              face: document.getElementById('face_'+i+'_'+j).value,
-              presence: document.getElementById('presence_'+i+'_'+j).value,
-              expire_date: document.getElementById('expire_year_'+i+'_'+j).value + '-' + document.getElementById('expire_month_'+i+'_'+j).value + '-' + document.getElementById('expire_day_'+i+'_'+j).value,
-              label_price: document.getElementById('label_price_'+i+'_'+j).value,
-              sale_price: document.getElementById('sale_price_'+i+'_'+j).value,
-              distribute_price: document.getElementById('distribute_price_'+i+'_'+j).value,
+              face: document.getElementById('face_' + i + '_' + j).value,
+              presence: document.getElementById('presence_' + i + '_' + j).value,
+              expire_date: document.getElementById('expire_year_' + i + '_' + j).value + '-' + document.getElementById('expire_month_' + i + '_' + j).value + '-' + document.getElementById('expire_day_' + i + '_' + j).value,
+              label_price: document.getElementById('label_price_' + i + '_' + j).value,
+              sale_price: document.getElementById('sale_price_' + i + '_' + j).value,
+              distribute_price: document.getElementById('distribute_price_' + i + '_' + j).value,
             });
           }
+          let layout = parseInt(document.getElementsByName('layoutView')[i].value) + parseInt(document.getElementsByName('layoutCount')[i].value) + parseInt(document.getElementsByName('layoutArrange')[i].value);
+
+          let layoutGrade = 'D';
+          switch (layout){
+            case '5': { layoutGrade = 'A'; break;}
+            case '4': { layoutGrade = 'B'; break;}
+            case '3': { layoutGrade = 'C'; break;}
+            default: { layoutGrade = 'D'; break;}
+
+         }
+
+
           info.push({
             sku_category_id: parseInt(cat_id),
             brand_id: brand_id,
             space: document.getElementsByName('space')[i].value,
-            layout: document.getElementsByName('layout')[i].value,
+            layout: layoutGrade,//
             skus: sectionSkus,
             // image: document.getElementsByName('image')[i].value
           });
         }
         let formData = new FormData();
         // console.log('iiiiii',images.value[0]);
-        for(let i=0; i<images.value.length; i++){
-          formData.append('image_'+i, images.value[i]);
-        }
+        // for(let i=0; i<images.value.length; i++){
+        //   formData.append('image_'+i, images.value[i]);
+        // }
         formData.append('visitor_id', visitor.id);
         formData.append('customer_id', route.params.id,);
         formData.append('description', document.querySelector('#description').value);
         formData.append('form', JSON.stringify(info));
         // console.log('info',info)
-        axios.post(panelUrl+'api/form', formData
-        //     {
-        //   visitor_id: visitor.id,
-        //   customer_id: route.params.id,
-        //   description: document.querySelector('#description').value,
-        //   form: info,
-        // }
+        axios.post(panelUrl + 'api/form', formData
+            //     {
+            //   visitor_id: visitor.id,
+            //   customer_id: route.params.id,
+            //   description: document.querySelector('#description').value,
+            //   form: info,
+            // }
         )
-        .then((response)=>{
-          if (response.status === 201 || response.status === 200) {
-            App.setup().reloadVisitor();
-            visitor.value = JSON.parse(localStorage.getItem('user'));
+            .then((response) => {
+              if (response.status === 201 || response.status === 200) {
+                App.setup().reloadVisitor();
+                visitor.value = JSON.parse(localStorage.getItem('user'));
 
-            setTimeout(() => {
-              router.push({name: 'forms'});
-            }, 2000);
-          }
-        }).catch((error)=>{ console.error(error)});
+                setTimeout(() => {
+                  router.push({name: 'forms'});
+                }, 2000);
+              }
+            }).catch((error) => {
+          console.error(error)
+        });
       }
     }
     return {
-      formSections, addBrand, customer,visitor, findCustomer, router,route, form, removeBrand, saveForm, emptyFieldsCount,
+      formSections,
+      addBrand,
+      customer,
+      visitor,
+      findCustomer,
+      router,
+      route,
+      form,
+      removeBrand,
+      saveForm,
+      emptyFieldsCount,
       images,
     }
   }
