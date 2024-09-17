@@ -48,7 +48,7 @@
 
     <div class="col-3 ps-0 pe-1 mb-3">
       <label :for="'layoutFlavor'+index">طعم های اصلی</label>
-      <select class="form-select form-select-sm" name="layoutArrange" :id="'layoutFlavor'+index">
+      <select class="form-select form-select-sm" name="layoutFlavor" :id="'layoutFlavor'+index">
         <option value="1">بله</option>
         <option value="0">خیر</option>
       </select>
