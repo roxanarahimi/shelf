@@ -46,24 +46,31 @@
 <!--      </select>-->
 <!--    </div>-->
 
-
-    <div class="col-4 px-1 mb-3">
-      <label :for="'space'+index">در دیدرس بودن</label>
+    <div class="col-3 ps-0 pe-1 mb-3">
+      <label :for="'layoutFlavor'+index">طعم های اصلی</label>
+      <select class="form-select form-select-sm" name="layoutArrange" :id="'layoutFlavor'+index">
+        <option value="1">بله</option>
+        <option value="0">خیر</option>
+      </select>
+    </div>
+    <div class="col-3 px-1 mb-3">
+      <label :for="'layoutView'+index">در دیدرس بودن</label>
       <select class="form-select form-select-sm" name="layoutView" :id="'layoutView'+index">
         <option value="1">بله</option>
         <option value="0">خیر</option>
       </select>
     </div>
-    <div class="col-4 ps-0 pe-1 mb-3">
-      <label :for="'space'+index">تعداد در دیدرس</label>
+    <div class="col-3 ps-0 pe-1 mb-3">
+      <label :for="'layoutCount'+index">تعداد در دیدرس</label>
       <select class="form-select form-select-sm" name="layoutCount" :id="'layoutCount'+index">
         <option value="2">خوب</option>
         <option value="1">متوسط</option>
         <option value="0">بد</option>
       </select>
     </div>
-    <div class="col-4 ps-0 pe-1 mb-3">
-      <label :for="'space'+index">نظم چیدمان</label>
+
+<div class="col-3 ps-0 pe-1 mb-3">
+      <label :for="'layoutArrange'+index">نظم چیدمان</label>
       <select class="form-select form-select-sm" name="layoutArrange" :id="'layoutArrange'+index">
         <option value="2">خوب</option>
         <option value="1">متوسط</option>

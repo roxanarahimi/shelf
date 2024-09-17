@@ -100,10 +100,14 @@ export default {
               distribute_price: document.getElementById('distribute_price_' + i + '_' + j).value,
             });
           }
-          let layout = parseInt(document.getElementsByName('layoutView')[i].value) + parseInt(document.getElementsByName('layoutCount')[i].value) + parseInt(document.getElementsByName('layoutArrange')[i].value);
+          let layout = parseInt(document.getElementsByName('layoutFlavor')[i].value) +
+              parseInt(document.getElementsByName('layoutView')[i].value) +
+              parseInt(document.getElementsByName('layoutCount')[i].value) +
+              parseInt(document.getElementsByName('layoutArrange')[i].value);
 
           let layoutGrade = 'D';
           switch (layout){
+            case 6: { layoutGrade = 'A'; break;}
             case 5: { layoutGrade = 'A'; break;}
             case 4: { layoutGrade = 'B'; break;}
             case 3: { layoutGrade = 'C'; break;}
