@@ -104,9 +104,9 @@ export default {
 
           let layoutGrade = 'D';
           switch (layout){
-            case '5': { layoutGrade = 'A'; break;}
-            case '4': { layoutGrade = 'B'; break;}
-            case '3': { layoutGrade = 'C'; break;}
+            case 5: { layoutGrade = 'A'; break;}
+            case 4: { layoutGrade = 'B'; break;}
+            case 3: { layoutGrade = 'C'; break;}
             default: { layoutGrade = 'D'; break;}
 
          }
