@@ -78,21 +78,21 @@
     </div>
 
     <div class="col-4 px-1">
-      <label :for="'label_price_'+index+'_'+number">قیمت بسته بندی</label>
-      <input type="number" value="" min="0" @input="checkPrice('label_price_'+index+'_'+number)" class="form-control form-control-sm en price" name="label_price" :id="'label_price_'+index+'_'+number">
-      <small class="d-block en"></small>
+      <label :for="'label_price_'+index+'_'+number">قیمت کالا</label>
+      <input type="number" value="" min="0" @focus="showSeparated('label_price_'+index+'_'+number)" @input="checkPrice('label_price_'+index+'_'+number)" class="form-control form-control-sm en price" name="label_price" :id="'label_price_'+index+'_'+number">
     </div>
     <div class="col-4 ps-0 pe-1">
-      <label :for="'sale_price_'+index+'_'+number">قیمت فروش</label>
-      <input type="number" value="" min="0" @input="checkPrice('sale_price_'+index+'_'+number)" class="form-control form-control-sm en price" name="sale_price" :id="'sale_price_'+index+'_'+number">
-   <small class="d-block en"></small>
+      <label :for="'sale_price_'+index+'_'+number">قیمت فروشگاه</label>
+      <input type="number" value="" min="0" @focus="showSeparated('sale_price_'+index+'_'+number)" @input="checkPrice('sale_price_'+index+'_'+number)" class="form-control form-control-sm en price" name="sale_price" :id="'sale_price_'+index+'_'+number">
     </div>
     <div class="col-4 ps-0 pe-1">
       <label :for="'distribute_price_'+index+'_'+number">قیمت پخش</label>
-      <input type="number" value="" min="0" @input="checkPrice('distribute_price_'+index+'_'+number)" class="form-control form-control-sm en price" name="distribute_price" :id="'distribute_price_'+index+'_'+number">
-   <small class="d-block en"></small>
+      <input type="number" value="" min="0" @focus="showSeparated('distribute_price_'+index+'_'+number)" @input="checkPrice('distribute_price_'+index+'_'+number)" class="form-control form-control-sm en price" name="distribute_price" :id="'distribute_price_'+index+'_'+number">
     </div>
 
+  </div>
+  <div v-show="price" id="price">
+    <h1 v-show="price !== null"  id="priceVal" class="align-self-center text-center"></h1>
   </div>
 </template>
 
@@ -104,12 +104,33 @@ export default {
   props: ['sku', 'number','index'],
   setup(){
     const selectedSku = ref({})
+    const price = ref();
 
     const checkPrice=(id)=>{
-      let n = parseInt(document.querySelector('#'+id).value);
-      document.querySelector('#'+id).nextSibling.innerText = n.toLocaleString();
+
+      price.value = parseInt(document.querySelector('#'+id).value).toLocaleString();
+      document.querySelector('#priceVal').innerText= price.value;
+      document.querySelector('#price').style.opacity = 1;
+      setTimeout(()=>{
+        document.querySelector('#price').style.opacity = 0;
+      },3000)
     }
-    return {selectedSku,checkPrice}
+    const showSeparated = (id)=>{
+      price.value = parseInt(document.querySelector('#'+id).value).toLocaleString();
+      document.querySelector('#priceVal').innerText= price.value;
+      if (isNaN(parseInt(document.querySelector('#'+id).value))){
+        document.querySelector('#priceVal').innerText= '';
+        document.querySelector('#price').style.opacity = 0;
+
+      }else{
+        document.querySelector('#price').style.opacity = 1;
+        setTimeout(()=>{
+          document.querySelector('#price').style.opacity = 0;
+        },3000)
+      }
+
+    }
+    return {selectedSku,checkPrice,price,showSeparated}
   }
 }
 </script>
@@ -130,5 +151,19 @@ label {
   right: -20px;
   cursor: pointer;
   font-size: 15px
+}
+#price{
+  position: fixed;
+  top: 20px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.70);
+  border: white 1px solid;
+  border-radius: 5px;
+  width: 380px;
+  height: 100px;
+  line-height: 100px;
+  color: black;
+  display: grid;
+  opacity: 0;
 }
 </style>
