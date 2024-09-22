@@ -74,20 +74,23 @@
     </div>
     <div class="col-2 ps-0 pe-1">
       <label :for="'expire_year_'+index+'_'+number">&nbsp</label>
-      <input type="number" class="form-control form-control-sm en" value="1403" name="expire_year" :id="'expire_year_'+index+'_'+number">
+      <input type="number" class="form-control form-control-sm en price" value="1403" name="expire_year" :id="'expire_year_'+index+'_'+number">
     </div>
 
     <div class="col-4 px-1">
       <label :for="'label_price_'+index+'_'+number">قیمت بسته بندی</label>
-      <input type="number" value="" min="0" class="form-control form-control-sm en" name="label_price" :id="'label_price_'+index+'_'+number">
+      <input type="number" value="" min="0" @input="checkPrice('label_price_'+index+'_'+number)" class="form-control form-control-sm en price" name="label_price" :id="'label_price_'+index+'_'+number">
+      <small class="d-block en"></small>
     </div>
     <div class="col-4 ps-0 pe-1">
       <label :for="'sale_price_'+index+'_'+number">قیمت فروش</label>
-      <input type="number" value="" min="0" class="form-control form-control-sm en" name="sale_price" :id="'sale_price_'+index+'_'+number">
+      <input type="number" value="" min="0" @input="checkPrice('sale_price_'+index+'_'+number)" class="form-control form-control-sm en price" name="sale_price" :id="'sale_price_'+index+'_'+number">
+   <small class="d-block en"></small>
     </div>
     <div class="col-4 ps-0 pe-1">
       <label :for="'distribute_price_'+index+'_'+number">قیمت پخش</label>
-      <input type="number" value="" min="0" class="form-control form-control-sm en" name="distribute_price" :id="'distribute_price_'+index+'_'+number">
+      <input type="number" value="" min="0" @input="checkPrice('distribute_price_'+index+'_'+number)" class="form-control form-control-sm en price" name="distribute_price" :id="'distribute_price_'+index+'_'+number">
+   <small class="d-block en"></small>
     </div>
 
   </div>
@@ -102,7 +105,11 @@ export default {
   setup(){
     const selectedSku = ref({})
 
-    return {selectedSku,}
+    const checkPrice=(id)=>{
+      let n = parseInt(document.querySelector('#'+id).value);
+      document.querySelector('#'+id).nextSibling.innerText = n.toLocaleString();
+    }
+    return {selectedSku,checkPrice}
   }
 }
 </script>
