@@ -1,7 +1,7 @@
 <template>
   <div class="row m-0 mb-2 p-2 rounded mb-3 position-relative crdSku">
-    <div v-show="price" id="price">
-      <h1 v-show="price !== null"  id="priceVal" class="align-self-center text-center"></h1>
+    <div v-show="price" class="priceCrd" :id="'price'+'-'+index+'-'+number">
+      <h1 v-show="price !== null"  :id="'priceVal'+'-'+index+'-'+number" class="align-self-center text-center"></h1>
     </div>
     <div @click="$parent.removeSectionSku(number)" class="crdSkuClose"><i class="bi bi-x-circle-fill"></i></div>
 
@@ -103,30 +103,30 @@ import {ref} from "vue";
 export default {
   name: "FormSectionSkuForm",
   props: ['sku', 'number','index'],
-  setup(){
+  setup(_props){
     const selectedSku = ref({})
     const price = ref();
 
     const checkPrice=(id)=>{
 
       price.value = parseInt(document.querySelector('#'+id).value).toLocaleString();
-      document.querySelector('#priceVal').innerText= price.value;
-      document.querySelector('#price').style.opacity = 1;
+      document.querySelector('#priceVal'+'-'+_props.index+'-'+_props.number).innerText= price.value;
+      document.querySelector('#price'+'-'+_props.index+'-'+_props.number).style.opacity = 1;
       setTimeout(()=>{
-        document.querySelector('#price').style.opacity = 0;
+        document.querySelector('#price'+'-'+_props.index+'-'+_props.number).style.opacity = 0;
       },3000)
     }
     const showSeparated = (id)=>{
       price.value = parseInt(document.querySelector('#'+id).value).toLocaleString();
-      document.querySelector('#priceVal').innerText= price.value;
+      document.querySelector('#priceVal'+'-'+_props.index+'-'+_props.number).innerText= price.value;
       if (isNaN(parseInt(document.querySelector('#'+id).value))){
-        document.querySelector('#priceVal').innerText= '';
-        document.querySelector('#price').style.opacity = 0;
+        document.querySelector('#priceVal'+'-'+_props.index+'-'+_props.number).innerText= '';
+        document.querySelector('#price'+'-'+_props.index+'-'+_props.number).style.opacity = 0;
 
       }else{
-        document.querySelector('#price').style.opacity = 1;
+        document.querySelector('#price'+'-'+_props.index+'-'+_props.number).style.opacity = 1;
         setTimeout(()=>{
-          document.querySelector('#price').style.opacity = 0;
+          document.querySelector('#price'+'-'+_props.index+'-'+_props.number).style.opacity = 0;
         },3000)
       }
 
@@ -153,7 +153,7 @@ label {
   cursor: pointer;
   font-size: 15px
 }
-#price{
+.priceCrd{
   position: absolute;
   top: 20px;
   margin: 0 auto;
