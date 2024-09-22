@@ -1,5 +1,8 @@
 <template>
   <div class="row m-0 mb-2 p-2 rounded mb-3 position-relative crdSku">
+    <div v-show="price" id="price">
+      <h1 v-show="price !== null"  id="priceVal" class="align-self-center text-center"></h1>
+    </div>
     <div @click="$parent.removeSectionSku(number)" class="crdSkuClose"><i class="bi bi-x-circle-fill"></i></div>
 
     <div class="col-12 px-1">
@@ -91,9 +94,7 @@
     </div>
 
   </div>
-  <div v-show="price" id="price">
-    <h1 v-show="price !== null"  id="priceVal" class="align-self-center text-center"></h1>
-  </div>
+
 </template>
 
 <script>
@@ -153,7 +154,7 @@ label {
   font-size: 15px
 }
 #price{
-  position: fixed;
+  position: absolute;
   top: 20px;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.70);
