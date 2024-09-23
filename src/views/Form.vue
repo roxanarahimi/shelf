@@ -75,7 +75,7 @@
             <th class="en" >قیمت پخش</th>
             <th class="text-center">فضای تبلیغاتی</th>
             <th class="text-center" >چید مان</th>
-            <th class="text-center" >تصویر چیدمان</th>
+<!--            <th class="text-center" >تصویر چیدمان</th>-->
           </tr>
           </thead>
           <tbody v-for="(section,index) in form.sections" :key="index">
@@ -89,9 +89,9 @@
             <td class="en text-nowrap">{{ item.distribute_price }}</td>
             <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">{{ section.space }}</td>
             <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">{{ section.layout }}</td>
-            <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">
-              <img v-if="section.image" :src="storageUrl+section.image" width="80px">
-            </td>
+<!--            <td class="text-center align-middle text-nowrap" v-if="i===0" :rowspan="section.skus.length">-->
+<!--              <img v-if="section.image" :src="storageUrl+section.image" width="80px">-->
+<!--            </td>-->
 
           </tr>
           </tbody>
