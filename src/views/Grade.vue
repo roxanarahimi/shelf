@@ -54,10 +54,10 @@
       </div>
 
 
-      <div class="px-1">
-        <label>تصویر سردر سوپر مارکت</label>
-        <image-picker index="1" :img="customer.scores?.image" />
-      </div>
+<!--      <div class="px-1">-->
+<!--        <label>تصویر سردر سوپر مارکت</label>-->
+<!--        <image-picker index="1" :img="customer.scores?.image" />-->
+<!--      </div>-->
     </div>
 
     <!--    <div class="col-12">-->
@@ -123,7 +123,7 @@ export default {
         product_variety: document.querySelector('#product_variety').value,
         product_layout: document.querySelector('#product_layout').value,
         equipment: document.querySelector('#equipment').value,
-        image: document.querySelector('#image_code_1').value,
+        // image: document.querySelector('#image_code_1').value,
       })
           .then((response) => {
             router.push({path: '/customer', query: {code: customer.value.code}})
